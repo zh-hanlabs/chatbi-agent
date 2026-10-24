@@ -15,6 +15,19 @@ public class TextChunker {
     public static final int TARGET_CHUNK_SIZE = 500;
     public static final int OVERLAP_SIZE = 50;
 
+    private final int targetChunkSize;
+    private final int overlapSize;
+
+    /** 默认参数供线上管道使用;对比实验用带参构造 */
+    public TextChunker() {
+        this(TARGET_CHUNK_SIZE, OVERLAP_SIZE);
+    }
+
+    public TextChunker(int targetChunkSize, int overlapSize) {
+        this.targetChunkSize = targetChunkSize;
+        this.overlapSize = overlapSize;
+    }
+
     public List<String> chunk(String content) {
         List<String> chunks = new ArrayList<>();
         if (content == null || content.isBlank()) {
@@ -26,10 +39,10 @@ public class TextChunker {
             if (trimmed.isEmpty()) {
                 continue;
             }
-            if (trimmed.length() > TARGET_CHUNK_SIZE) {
+            if (trimmed.length() > targetChunkSize) {
                 flush(chunks, buffer);
                 chunks.addAll(splitLongParagraph(trimmed));
-            } else if (buffer.length() + trimmed.length() + 1 > TARGET_CHUNK_SIZE && buffer.length() > 0) {
+            } else if (buffer.length() + trimmed.length() + 1 > targetChunkSize && buffer.length() > 0) {
                 flush(chunks, buffer);
                 buffer.append(trimmed);
             } else {
@@ -45,9 +58,9 @@ public class TextChunker {
 
     private List<String> splitLongParagraph(String paragraph) {
         List<String> parts = new ArrayList<>();
-        int step = TARGET_CHUNK_SIZE - OVERLAP_SIZE;
+        int step = targetChunkSize - overlapSize;
         for (int start = 0; start < paragraph.length(); start += step) {
-            int end = Math.min(start + TARGET_CHUNK_SIZE, paragraph.length());
+            int end = Math.min(start + targetChunkSize, paragraph.length());
             parts.add(paragraph.substring(start, end));
             if (end == paragraph.length()) {
                 break;
