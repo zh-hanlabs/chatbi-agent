@@ -4,7 +4,7 @@
 
 - 项目：智能问数 Agent
 - 当前阶段：**develop**
-- 最近更新：2026-10-24T03:52:05
+- 最近更新：2026-10-24T03:52:52
 - 已完成阶段：intake、plan
 
 ## 当前阶段目标
@@ -21,21 +21,18 @@
 | --- | --- | --- | --- | --- | --- |
 | 1 | [x] intake | 已完成 需求立项 | 2026-10-24T03:47 | 2026-10-24T03:50 | 通过 (0E/1W) |
 | 3 | [x] plan | 已完成 排期计划 | 2026-10-24T03:50 | 2026-10-24T03:51 | 通过 (0E/0W) |
-| 4 | [~] develop | 进行中 开发执行 | 2026-10-24T03:51 | - | 通过 (0E/2W) |
+| 4 | [~] develop | 进行中 开发执行 | 2026-10-24T03:51 | - | 通过 (0E/3W) |
 | 5 | [ ] review | 未开始 代码评审 | - | - | - |
 | 6 | [ ] test | 未开始 测试验证 | - | - | - |
 | 7 | [ ] release | 未开始 发布部署 | - | - | - |
 
 ## 最近一次门禁结果
 
-**结论**：通过（错误 0 / 警告 2 / 提示 3，运行规则 7 条，模式 `warn`）
+**结论**：通过（错误 0 / 警告 2 / 提示 0，运行规则 7 条，模式 `warn`）
 
 | 级别 | 规则 | 问题 | 位置 | 修复建议 |
 | --- | --- | --- | --- | --- |
-| 提示 | `repo.branch` | 当前目录不是 git 仓库，跳过分支检查 | - | - |
-| 提示 | `repo.commit` | 当前目录不是 git 仓库，跳过提交检查 | - | - |
-| 提示 | `repo.tree_clean` | 当前目录不是 git 仓库，跳过 | - | - |
-| 警告 | `ci.config` | 未找到 github 的流水线配置（期望：.github/workflows） | - | `devflow ci emit --platform github` |
+| 警告 | `repo.branch` | 分支 `main` 不符合 develop 阶段规范：feature 需匹配 ^feature/[A-Za-z0-9._-]+-[A-Za-z0-9._-]+$；fix 需匹配 ^(fix\|hotfix)/[A-Za-z0-9._-]+-[A-Za-z0-9._-]+$ | - | `git checkout -b feature/<需求号>-<简述>` |
 | 警告 | `task.in_progress` | 没有任何任务处于 doing/done，开发与排期脱节 | - | - |
 
 ## 任务与排期
@@ -72,6 +69,8 @@
 
 | 时间 | 事件 | 说明 |
 | --- | --- | --- |
+| 2026-10-24 03:52:52 | `gate.run` | phase=develop, scope=exit, ok=True, errors=0, warnings=3 |
+| 2026-10-24 03:52:43 | `gate.run` | phase=develop, scope=exit, ok=True, errors=0, warnings=2 |
 | 2026-10-24 03:52:05 | `gate.run` | phase=develop, scope=exit, ok=True, errors=0, warnings=2 |
 | 2026-10-24 03:51:57 | `phase.enter` | target=develop, forced=False |
 | 2026-10-24 03:51:56 | `approve` | target=PLAN-001, by=Codex, role=reviewer, decision=approved |
@@ -80,5 +79,3 @@
 | 2026-10-24 03:50:53 | `task.add` | id=T-015, title=M5：演示录屏与面试深挖手册 |
 | 2026-10-24 03:50:52 | `task.add` | id=T-014, title=M5：README、架构图与 API 文档 |
 | 2026-10-24 03:50:52 | `task.add` | id=T-013, title=M5：Docker Compose 部署与环境隔离 |
-| 2026-10-24 03:50:52 | `task.add` | id=T-012, title=M4：核心单元测试与异常场景测试 |
-| 2026-10-24 03:50:52 | `task.add` | id=T-011, title=M4：Prompt、chunk、TopK 对比实验 |

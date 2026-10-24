@@ -4,7 +4,7 @@
 
 - 项目：智能问数 Agent
 - 当前阶段：**develop**
-- 最近更新：2026-10-24T03:52:52
+- 最近更新：2026-10-24T03:53:52
 - 已完成阶段：intake、plan
 
 ## 当前阶段目标
@@ -28,13 +28,12 @@
 
 ## 最近一次门禁结果
 
-**结论**：通过（错误 0 / 警告 3 / 提示 1，运行规则 7 条，模式 `warn`）
+**结论**：通过（错误 0 / 警告 3 / 提示 0，运行规则 7 条，模式 `warn`）
 
 | 级别 | 规则 | 问题 | 位置 | 修复建议 |
 | --- | --- | --- | --- | --- |
-| 警告 | `repo.branch` | 处于分离 HEAD 状态 | - | 新建或切换到一个规范命名的分支 |
-| 提示 | `repo.commit` | 仓库还没有任何提交 | - | - |
-| 警告 | `repo.tree_clean` | 有 7 处未提交改动，例如：?? .devflow/ | - | `git add -A && git commit -m "chore: ..."`；若某文件是生成产物，可加入 devflow.yaml#repo.clean_ignore |
+| 警告 | `repo.branch` | 分支 `main` 不符合 develop 阶段规范：feature 需匹配 ^feature/[A-Za-z0-9._-]+-[A-Za-z0-9._-]+$；fix 需匹配 ^(fix\|hotfix)/[A-Za-z0-9._-]+-[A-Za-z0-9._-]+$ | - | `git checkout -b feature/<需求号>-<简述>` |
+| 警告 | `repo.tree_clean` | 有 16 处未提交改动，例如：D  tools/devflow/lib/__pycache__/__init__.cpython-313.pyc | - | `git add -A && git commit -m "chore: ..."`；若某文件是生成产物，可加入 devflow.yaml#repo.clean_ignore |
 | 警告 | `task.in_progress` | 没有任何任务处于 doing/done，开发与排期脱节 | - | - |
 
 ## 任务与排期
@@ -71,6 +70,7 @@
 
 | 时间 | 事件 | 说明 |
 | --- | --- | --- |
+| 2026-10-24 03:53:52 | `gate.run` | phase=develop, scope=exit, ok=True, errors=0, warnings=3 |
 | 2026-10-24 03:52:52 | `gate.run` | phase=develop, scope=exit, ok=True, errors=0, warnings=3 |
 | 2026-10-24 03:52:43 | `gate.run` | phase=develop, scope=exit, ok=True, errors=0, warnings=2 |
 | 2026-10-24 03:52:05 | `gate.run` | phase=develop, scope=exit, ok=True, errors=0, warnings=2 |
@@ -80,4 +80,3 @@
 | 2026-10-24 03:51:48 | `sync` | added=0 |
 | 2026-10-24 03:50:53 | `task.add` | id=T-015, title=M5：演示录屏与面试深挖手册 |
 | 2026-10-24 03:50:52 | `task.add` | id=T-014, title=M5：README、架构图与 API 文档 |
-| 2026-10-24 03:50:52 | `task.add` | id=T-013, title=M5：Docker Compose 部署与环境隔离 |
