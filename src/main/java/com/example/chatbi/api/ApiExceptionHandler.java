@@ -23,4 +23,9 @@ public class ApiExceptionHandler {
     public ResponseEntity<Map<String, String>> sqlNotAllowed(SqlNotAllowedException e) {
         return ResponseEntity.unprocessableEntity().body(Map.of("error", e.getMessage()));
     }
+
+    @ExceptionHandler(ForbiddenException.class)
+    public ResponseEntity<Map<String, String>> forbidden(ForbiddenException e) {
+        return ResponseEntity.status(403).body(Map.of("error", e.getMessage()));
+    }
 }

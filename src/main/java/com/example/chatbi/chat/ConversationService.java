@@ -4,6 +4,7 @@ import com.example.chatbi.agent.AgentClient;
 import com.example.chatbi.agent.AgentResult;
 import com.example.chatbi.agent.ToolCall;
 import com.example.chatbi.api.NotFoundException;
+import com.example.chatbi.audit.AuditService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
@@ -22,11 +23,14 @@ public class ConversationService {
     private final ConversationRepository repository;
     private final AgentClient agentClient;
     private final ObjectMapper objectMapper;
+    private final AuditService auditService;
 
-    public ConversationService(ConversationRepository repository, AgentClient agentClient, ObjectMapper objectMapper) {
+    public ConversationService(ConversationRepository repository, AgentClient agentClient, ObjectMapper objectMapper,
+            AuditService auditService) {
         this.repository = repository;
         this.agentClient = agentClient;
         this.objectMapper = objectMapper;
+        this.auditService = auditService;
     }
 
     @Transactional
@@ -60,6 +64,8 @@ public class ConversationService {
                 new ChatMessage(null, conversation.id(), "ASSISTANT", result.answer(), toolCallJson, null));
 
         repository.touchUpdatedAt(conversation.id());
+        auditService.record(conversation.userId(), conversation.id(), AuditService.ACTION_CHAT, question, null,
+                true, null);
         return new ChatReply(result.answer(), result.toolCall(), result.requiresTool(),
                 userMessageId, assistantMessageId);
     }

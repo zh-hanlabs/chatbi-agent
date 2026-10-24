@@ -6,3 +6,8 @@ spring:
     password: ""
   flyway:
     clean-disabled: false
+
+chatbi:
+  cache:
+    type: memory
+    ttl-seconds: 300

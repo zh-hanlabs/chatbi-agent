@@ -134,7 +134,7 @@ class SqlSecurityApiTests {
         GeneratedSql generated = sqlGenerator.generate("北京的 GMV");
         mockMvc.perform(post("/api/sql/confirm")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"sql\":%s}".formatted(jsonEscape(generated.sql()))))
+                        .content("{\"userId\":1,\"sql\":%s}".formatted(jsonEscape(generated.sql()))))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.rowCount").value(1))
                 .andExpect(jsonPath("$.columns[0]").value("gmv"))
@@ -147,7 +147,7 @@ class SqlSecurityApiTests {
         GeneratedSql generated = sqlGenerator.generate("总订单量");
         mockMvc.perform(post("/api/sql/confirm")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"sql\":%s}".formatted(jsonEscape(generated.sql()))))
+                        .content("{\"userId\":1,\"sql\":%s}".formatted(jsonEscape(generated.sql()))))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.rows[0].order_count").value(5));
     }
@@ -156,7 +156,7 @@ class SqlSecurityApiTests {
     void confirmRejectsUnsafeSqlWith422() throws Exception {
         mockMvc.perform(post("/api/sql/confirm")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"sql\":\"UPDATE orders SET amount = 0\"}"))
+                        .content("{\"userId\":1,\"sql\":\"UPDATE orders SET amount = 0\"}"))
                 .andExpect(status().isUnprocessableEntity())
                 .andExpect(jsonPath("$.error").isNotEmpty());
     }
