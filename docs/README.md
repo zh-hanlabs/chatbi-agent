@@ -37,6 +37,11 @@
 | REVIEW-002 | review | REQ-002 权限与模型接入评审 | [docs/review/REVIEW-002-req-002.md](../docs/review/REVIEW-002-req-002.md) |
 | TEST-002 | testplan | REQ-002 权限与模型接入测试计划 | [docs/test/TEST-002-req-002.md](../docs/test/TEST-002-req-002.md) |
 | RELEASE-002 | releaseplan | REQ-002 v0.2.0 权限与模型接入发布 | [docs/release/RELEASE-002-req-002-v0-2-0.md](../docs/release/RELEASE-002-req-002-v0-2-0.md) |
+| REQ-001 | requirement | 智能问数 Agent 实习作品项目 | [docs/requirements/REQ-001-chatbi-agent.md](../docs/requirements/REQ-001-chatbi-agent.md) |
+| PLAN-001 | plan | 智能问数 Agent 六周交付计划 | [docs/plan/PLAN-001-six-week-mvp.md](../docs/plan/PLAN-001-six-week-mvp.md) |
+| REVIEW-001 | review | REQ-001 全量交付评审 | [docs/review/REVIEW-001-req-001.md](../docs/review/REVIEW-001-req-001.md) |
+| TEST-001 | testplan | REQ-001 功能与异常测试计划 | [docs/test/TEST-001-req-001.md](../docs/test/TEST-001-req-001.md) |
+| RELEASE-001 | releaseplan | REQ-001 v0.1.0 首个演示版发布 | [docs/release/RELEASE-001-req-001-v0-1-0.md](../docs/release/RELEASE-001-req-001-v0-1-0.md) |
 
 <!-- devflow:index:end -->
 
