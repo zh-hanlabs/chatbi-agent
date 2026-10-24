@@ -7,7 +7,7 @@
     "repo": ""
   },
   "created_at": "2026-10-24T03:47:45",
-  "updated_at": "2026-10-24T08:29:48",
+  "updated_at": "2026-10-24T08:31:59",
   "current_phase": "develop",
   "phases": {
     "intake": {
@@ -40,7 +40,7 @@
       "exited_at": null,
       "attempts": 0,
       "last_check": {
-        "at": "2026-10-24T08:29:48",
+        "at": "2026-10-24T08:31:59",
         "ok": true,
         "errors": 0,
         "warnings": 1
@@ -359,7 +359,7 @@
       "tags": [
         "m5"
       ],
-      "status": "todo",
+      "status": "done",
       "start": "2026-10-24",
       "due": "2026-12-06",
       "depends_on": [],
@@ -367,7 +367,7 @@
       "note": "",
       "blocking": true,
       "created_at": "2026-10-24T03:50:52",
-      "updated_at": "2026-10-24T03:50:52"
+      "updated_at": "2026-10-24T08:31:59"
     },
     {
       "id": "T-015",
