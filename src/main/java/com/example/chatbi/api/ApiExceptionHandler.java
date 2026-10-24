@@ -18,4 +18,9 @@ public class ApiExceptionHandler {
     public ResponseEntity<Map<String, String>> unsupportedQuestion(UnsupportedQuestionException e) {
         return ResponseEntity.unprocessableEntity().body(Map.of("error", e.getMessage()));
     }
+
+    @ExceptionHandler(SqlNotAllowedException.class)
+    public ResponseEntity<Map<String, String>> sqlNotAllowed(SqlNotAllowedException e) {
+        return ResponseEntity.unprocessableEntity().body(Map.of("error", e.getMessage()));
+    }
 }
