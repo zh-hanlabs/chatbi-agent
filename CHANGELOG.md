@@ -2,6 +2,26 @@
 
 本文件遵循 Keep a Changelog 规范，语义化版本号。
 
+## [v0.2.0] - 2026-10-24
+
+权限执行与模型接入。
+
+### 新增
+
+- **数据权限执行**:区域/指标双执行点——生成层(nl2sql/rag/chat)越权 403,confirm 层 SQL 区域字面量越权 422;每次拒绝落审计(PERMISSION_DENIED);用户不存在默认全拒;知识型问题不受数据权限影响;`GET /api/users/{id}/permissions` 权限视图
+- **LLM 接入(带回退)**:OpenAI 兼容客户端(RestClient,10s 超时,支持 GLM/DeepSeek/Qwen 网关);LLM 版 SqlGenerator(表结构+口径+few-shot 提示词,严格 JSON 契约,产出必须过只读安全校验器);Embedding 网关实现(同文本缓存);未配 Key 或任何失败自动回退规则/哈希实现,主链路可用性不降
+- **CI**:`ci-tests.yml` 在 push/PR 上跑全量测试(含 56 条评估门槛断言)
+
+### 修复
+
+- chat 事务回滚连审计一起回滚(record 改 REQUIRES_NEW 独立事务)
+- 知识路由测试用例顺序依赖(CI 环境暴露,改为自灌语料)
+- LlmProperties record 缺 @ConfigurationProperties 致上下文启动失败
+
+### 配置
+
+- 新增 `chatbi.llm.*`(base-url/api-key/chat-model/embedding-model/timeout-seconds),api-key 为空即全部回退本地实现;环境变量 `CHATBI_LLM_*` 可覆盖
+
 ## [v0.1.0] - 2026-10-24
 
 首个演示版:自然语言问数 Agent 全链路(REQ-001 / M1~M5)。

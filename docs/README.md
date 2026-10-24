@@ -34,6 +34,9 @@
 | REQ-002 | requirement | 权限执行与模型接入(二期) | [docs/requirements/REQ-002-permission-llm.md](../docs/requirements/REQ-002-permission-llm.md) |
 | PLAN-002 | plan | REQ-002 权限与模型接入排期 | [docs/plan/PLAN-002-req-002.md](../docs/plan/PLAN-002-req-002.md) |
 | DESIGN-001 | design | 权限执行与模型接入设计 | [docs/design/DESIGN-001-design.md](../docs/design/DESIGN-001-design.md) |
+| REVIEW-002 | review | REQ-002 权限与模型接入评审 | [docs/review/REVIEW-002-req-002.md](../docs/review/REVIEW-002-req-002.md) |
+| TEST-002 | testplan | REQ-002 权限与模型接入测试计划 | [docs/test/TEST-002-req-002.md](../docs/test/TEST-002-req-002.md) |
+| RELEASE-002 | releaseplan | REQ-002 v0.2.0 权限与模型接入发布 | [docs/release/RELEASE-002-req-002-v0-2-0.md](../docs/release/RELEASE-002-req-002-v0-2-0.md) |
 
 <!-- devflow:index:end -->
 

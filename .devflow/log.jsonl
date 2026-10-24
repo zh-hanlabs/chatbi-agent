@@ -121,3 +121,24 @@
 {"ts": "2026-10-24T09:28:34", "event": "task.add", "id": "T-004", "title": "GitHub Actions CI(测试+评估门禁)"}
 {"ts": "2026-10-24T09:28:34", "event": "phase.enter", "target": "plan", "forced": false}
 {"ts": "2026-10-24T09:28:48", "event": "phase.enter.blocked", "target": "develop", "errors": 1}
+{"ts": "2026-10-24T09:28:56", "event": "phase.enter.blocked", "target": "develop", "errors": 1}
+{"ts": "2026-10-24T09:29:39", "event": "gate.run", "phase": "plan", "scope": "exit", "ok": true, "errors": 0, "warnings": 1}
+{"ts": "2026-10-24T09:29:39", "event": "phase.enter", "target": "develop", "forced": false}
+{"ts": "2026-10-24T09:29:40", "event": "task.update", "id": "T-001", "fields": "status"}
+{"ts": "2026-10-24T09:37:03", "event": "task.update", "id": "T-001", "fields": "status"}
+{"ts": "2026-10-24T09:37:19", "event": "task.update", "id": "T-002", "fields": "status"}
+{"ts": "2026-10-24T09:42:11", "event": "task.update", "id": "T-002", "fields": "status"}
+{"ts": "2026-10-24T09:42:11", "event": "task.update", "id": "T-003", "fields": "status"}
+{"ts": "2026-10-24T09:42:26", "event": "task.update", "id": "T-004", "fields": "status"}
+{"ts": "2026-10-24T09:43:30", "event": "task.update", "id": "T-004", "fields": "status"}
+{"ts": "2026-10-24T10:03:58", "event": "doc.create", "id": "REVIEW-002", "kind": "review", "path": "docs/review/REVIEW-002-req-002.md"}
+{"ts": "2026-10-24T10:03:59", "event": "phase.enter", "target": "review", "forced": false}
+{"ts": "2026-10-24T10:05:00", "event": "approve", "target": "REVIEW-002", "by": "ZCode", "role": "reviewer", "decision": "approved"}
+{"ts": "2026-10-24T10:05:00", "event": "phase.enter", "target": "test", "forced": false}
+{"ts": "2026-10-24T10:05:00", "event": "doc.create", "id": "TEST-002", "kind": "testplan", "path": "docs/test/TEST-002-req-002.md"}
+{"ts": "2026-10-24T10:06:27", "event": "approve", "target": "TEST-002", "by": "ZCode", "role": "qa", "decision": "approved"}
+{"ts": "2026-10-24T10:06:27", "event": "phase.enter", "target": "release", "forced": false}
+{"ts": "2026-10-24T10:06:27", "event": "doc.create", "id": "RELEASE-002", "kind": "releaseplan", "path": "docs/release/RELEASE-002-req-002-v0-2-0.md"}
+{"ts": "2026-10-24T10:07:07", "event": "approve", "target": "RELEASE-002", "by": "lenovo", "role": "reviewer", "decision": "approved"}
+{"ts": "2026-10-24T10:07:07", "event": "gate.run", "phase": "release", "scope": "exit", "ok": false, "errors": 3, "warnings": 0}
+{"ts": "2026-10-24T10:07:15", "event": "gate.run", "phase": "release", "scope": "exit", "ok": false, "errors": 3, "warnings": 0}
