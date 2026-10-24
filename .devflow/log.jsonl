@@ -147,3 +147,9 @@
 {"ts": "2026-10-24T10:12:26", "event": "approve", "target": "RELEASE-001", "by": "lenovo", "role": "reviewer", "decision": "approved"}
 {"ts": "2026-10-24T10:12:26", "event": "gate.run", "phase": "release", "scope": "exit", "ok": true, "errors": 0, "warnings": 0}
 {"ts": "2026-10-24T10:12:34", "event": "ci.record", "status": "success", "updated_at": "2026-10-24T10:12:34", "run_id": "local-mvnw-125"}
+{"ts": "2026-10-24T10:14:03", "event": "phase.enter", "target": "retro", "forced": false}
+{"ts": "2026-10-24T10:14:03", "event": "doc.create", "id": "RETRO-001", "kind": "retro", "path": "docs/retro/RETRO-001-req-002.md"}
+{"ts": "2026-10-24T10:14:49", "event": "task.add", "id": "T-005", "title": "配置 LLM Key 后跑 EXP-002 真机评估"}
+{"ts": "2026-10-24T10:14:49", "event": "gate.run", "phase": "retro", "scope": "exit", "ok": true, "errors": 0, "warnings": 0}
+{"ts": "2026-10-24T10:14:50", "event": "approve", "target": "RETRO-001", "by": "lenovo", "role": "reviewer", "decision": "approved"}
+{"ts": "2026-10-24T10:14:50", "event": "archive", "snapshot": ".devflow/archive/req-002-v0.2.0.json"}

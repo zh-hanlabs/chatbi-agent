@@ -42,6 +42,7 @@
 | REVIEW-001 | review | REQ-001 全量交付评审 | [docs/review/REVIEW-001-req-001.md](../docs/review/REVIEW-001-req-001.md) |
 | TEST-001 | testplan | REQ-001 功能与异常测试计划 | [docs/test/TEST-001-req-001.md](../docs/test/TEST-001-req-001.md) |
 | RELEASE-001 | releaseplan | REQ-001 v0.1.0 首个演示版发布 | [docs/release/RELEASE-001-req-001-v0-1-0.md](../docs/release/RELEASE-001-req-001-v0-1-0.md) |
+| RETRO-001 | retro | REQ-002 迭代复盘 | [docs/retro/RETRO-001-req-002.md](../docs/retro/RETRO-001-req-002.md) |
 
 <!-- devflow:index:end -->
 

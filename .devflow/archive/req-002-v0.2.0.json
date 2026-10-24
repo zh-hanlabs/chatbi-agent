@@ -1,0 +1,407 @@
+{
+  "version": "1.0",
+  "project": {
+    "name": "智能问数 Agent",
+    "slug": "chatbi-agent",
+    "owner": "lenovo",
+    "repo": ""
+  },
+  "created_at": "2026-10-24T09:22:09",
+  "updated_at": "2026-10-24T10:14:50",
+  "current_phase": "retro",
+  "phases": {
+    "intake": {
+      "status": "completed",
+      "entered_at": "2026-10-24T09:22:09",
+      "exited_at": "2026-10-24T09:28:18",
+      "attempts": 0,
+      "last_check": {
+        "at": "2026-10-24T09:25:13",
+        "ok": true,
+        "errors": 0,
+        "warnings": 1
+      }
+    },
+    "design": {
+      "status": "completed",
+      "entered_at": "2026-10-24T09:28:18",
+      "exited_at": "2026-10-24T09:28:34",
+      "attempts": 0,
+      "last_check": null
+    },
+    "plan": {
+      "status": "completed",
+      "entered_at": "2026-10-24T09:28:34",
+      "exited_at": "2026-10-24T09:29:39",
+      "attempts": 0,
+      "last_check": {
+        "at": "2026-10-24T09:29:39",
+        "ok": true,
+        "errors": 0,
+        "warnings": 1
+      }
+    },
+    "develop": {
+      "status": "completed",
+      "entered_at": "2026-10-24T09:29:39",
+      "exited_at": "2026-10-24T10:03:59",
+      "attempts": 0,
+      "last_check": {
+        "at": "2026-10-24T09:28:56",
+        "ok": false,
+        "errors": 1,
+        "warnings": 2
+      }
+    },
+    "review": {
+      "status": "completed",
+      "entered_at": "2026-10-24T10:03:59",
+      "exited_at": "2026-10-24T10:05:00",
+      "attempts": 0,
+      "last_check": null
+    },
+    "test": {
+      "status": "completed",
+      "entered_at": "2026-10-24T10:05:00",
+      "exited_at": "2026-10-24T10:06:27",
+      "attempts": 0,
+      "last_check": null
+    },
+    "release": {
+      "status": "completed",
+      "entered_at": "2026-10-24T10:06:27",
+      "exited_at": "2026-10-24T10:14:03",
+      "attempts": 0,
+      "last_check": {
+        "at": "2026-10-24T10:12:26",
+        "ok": true,
+        "errors": 0,
+        "warnings": 0
+      }
+    },
+    "retro": {
+      "status": "active",
+      "entered_at": "2026-10-24T10:14:03",
+      "exited_at": null,
+      "attempts": 0,
+      "last_check": {
+        "at": "2026-10-24T10:14:49",
+        "ok": true,
+        "errors": 0,
+        "warnings": 0
+      }
+    }
+  },
+  "artifacts": [
+    {
+      "id": "REQ-002",
+      "kind": "requirement",
+      "phase": "intake",
+      "title": "权限执行与模型接入(二期)",
+      "path": "docs/requirements/REQ-002-permission-llm.md",
+      "created_at": "2026-10-24T09:22:29",
+      "updated_at": "2026-10-24T09:23:05"
+    },
+    {
+      "id": "PLAN-002",
+      "kind": "plan",
+      "phase": "plan",
+      "title": "REQ-002 权限与模型接入排期",
+      "path": "docs/plan/PLAN-002-req-002.md",
+      "created_at": "2026-10-24T09:23:33",
+      "updated_at": "2026-10-24T09:23:33"
+    },
+    {
+      "id": "DESIGN-001",
+      "kind": "design",
+      "phase": "design",
+      "title": "权限执行与模型接入设计",
+      "path": "docs/design/DESIGN-001-design.md",
+      "created_at": "2026-10-24T09:23:45",
+      "updated_at": "2026-10-24T09:25:14"
+    },
+    {
+      "id": "REVIEW-002",
+      "kind": "review",
+      "phase": "review",
+      "title": "REQ-002 权限与模型接入评审",
+      "path": "docs/review/REVIEW-002-req-002.md",
+      "created_at": "2026-10-24T10:03:58",
+      "updated_at": "2026-10-24T10:05:00"
+    },
+    {
+      "id": "TEST-002",
+      "kind": "testplan",
+      "phase": "test",
+      "title": "REQ-002 权限与模型接入测试计划",
+      "path": "docs/test/TEST-002-req-002.md",
+      "created_at": "2026-10-24T10:05:00",
+      "updated_at": "2026-10-24T10:06:27"
+    },
+    {
+      "id": "RELEASE-002",
+      "kind": "releaseplan",
+      "phase": "release",
+      "title": "REQ-002 v0.2.0 权限与模型接入发布",
+      "path": "docs/release/RELEASE-002-req-002-v0-2-0.md",
+      "created_at": "2026-10-24T10:06:27",
+      "updated_at": "2026-10-24T10:07:07"
+    },
+    {
+      "id": "REQ-001",
+      "kind": "requirement",
+      "phase": "intake",
+      "title": "智能问数 Agent 实习作品项目",
+      "path": "docs/requirements/REQ-001-chatbi-agent.md",
+      "created_at": "2026-10-24T10:12:25",
+      "updated_at": "2026-10-24T10:12:25"
+    },
+    {
+      "id": "PLAN-001",
+      "kind": "plan",
+      "phase": "plan",
+      "title": "智能问数 Agent 六周交付计划",
+      "path": "docs/plan/PLAN-001-six-week-mvp.md",
+      "created_at": "2026-10-24T10:12:25",
+      "updated_at": "2026-10-24T10:12:25"
+    },
+    {
+      "id": "REVIEW-001",
+      "kind": "review",
+      "phase": "review",
+      "title": "REQ-001 全量交付评审",
+      "path": "docs/review/REVIEW-001-req-001.md",
+      "created_at": "2026-10-24T10:12:25",
+      "updated_at": "2026-10-24T10:12:25"
+    },
+    {
+      "id": "TEST-001",
+      "kind": "testplan",
+      "phase": "test",
+      "title": "REQ-001 功能与异常测试计划",
+      "path": "docs/test/TEST-001-req-001.md",
+      "created_at": "2026-10-24T10:12:25",
+      "updated_at": "2026-10-24T10:12:25"
+    },
+    {
+      "id": "RELEASE-001",
+      "kind": "releaseplan",
+      "phase": "release",
+      "title": "REQ-001 v0.1.0 首个演示版发布",
+      "path": "docs/release/RELEASE-001-req-001-v0-1-0.md",
+      "created_at": "2026-10-24T10:12:25",
+      "updated_at": "2026-10-24T10:12:26"
+    },
+    {
+      "id": "RETRO-001",
+      "kind": "retro",
+      "phase": "retro",
+      "title": "REQ-002 迭代复盘",
+      "path": "docs/retro/RETRO-001-req-002.md",
+      "created_at": "2026-10-24T10:14:03",
+      "updated_at": "2026-10-24T10:14:50"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "T-001",
+      "title": "权限执行:生成层+confirm 层+权限查询接口",
+      "phase": "develop",
+      "owner": "lenovo",
+      "estimate_h": 8.0,
+      "priority": "P1",
+      "tags": [],
+      "status": "done",
+      "start": "2026-10-24",
+      "due": "2026-10-28",
+      "depends_on": [],
+      "req": "REQ-002",
+      "note": "",
+      "blocking": true,
+      "created_at": "2026-10-24T09:28:33",
+      "updated_at": "2026-10-24T09:37:03"
+    },
+    {
+      "id": "T-002",
+      "title": "OpenAI 兼容客户端与 LLM SqlGenerator(带回退)",
+      "phase": "develop",
+      "owner": "lenovo",
+      "estimate_h": 10.0,
+      "priority": "P1",
+      "tags": [],
+      "status": "done",
+      "start": "2026-10-24",
+      "due": "2026-10-30",
+      "depends_on": [],
+      "req": "REQ-002",
+      "note": "",
+      "blocking": true,
+      "created_at": "2026-10-24T09:28:34",
+      "updated_at": "2026-10-24T09:42:11"
+    },
+    {
+      "id": "T-003",
+      "title": "Embedding HTTP 实现与回退",
+      "phase": "develop",
+      "owner": "lenovo",
+      "estimate_h": 6.0,
+      "priority": "P1",
+      "tags": [],
+      "status": "done",
+      "start": "2026-10-24",
+      "due": "2026-10-31",
+      "depends_on": [],
+      "req": "REQ-002",
+      "note": "",
+      "blocking": false,
+      "created_at": "2026-10-24T09:28:34",
+      "updated_at": "2026-10-24T09:42:11"
+    },
+    {
+      "id": "T-004",
+      "title": "GitHub Actions CI(测试+评估门禁)",
+      "phase": "develop",
+      "owner": "lenovo",
+      "estimate_h": 4.0,
+      "priority": "P1",
+      "tags": [],
+      "status": "done",
+      "start": "2026-10-24",
+      "due": "2026-10-31",
+      "depends_on": [],
+      "req": "REQ-002",
+      "note": "",
+      "blocking": false,
+      "created_at": "2026-10-24T09:28:34",
+      "updated_at": "2026-10-24T09:43:30"
+    },
+    {
+      "id": "T-005",
+      "title": "配置 LLM Key 后跑 EXP-002 真机评估",
+      "phase": "retro",
+      "owner": "lenovo",
+      "estimate_h": 4.0,
+      "priority": "P1",
+      "tags": [
+        "retro"
+      ],
+      "status": "todo",
+      "start": "2026-10-24",
+      "due": "2026-11-14",
+      "depends_on": [],
+      "req": "",
+      "note": "",
+      "blocking": false,
+      "created_at": "2026-10-24T10:14:49",
+      "updated_at": "2026-10-24T10:14:49"
+    }
+  ],
+  "approvals": [
+    {
+      "target": "REQ-002",
+      "by": "ZCode",
+      "role": "reviewer",
+      "phase": "intake",
+      "decision": "approved",
+      "at": "2026-10-24T09:23:05"
+    },
+    {
+      "target": "DESIGN-001",
+      "by": "ZCode",
+      "role": "reviewer",
+      "phase": "design",
+      "decision": "approved",
+      "at": "2026-10-24T09:25:14"
+    },
+    {
+      "target": "REVIEW-002",
+      "by": "ZCode",
+      "role": "reviewer",
+      "phase": "review",
+      "decision": "approved",
+      "at": "2026-10-24T10:05:00"
+    },
+    {
+      "target": "TEST-002",
+      "by": "ZCode",
+      "role": "qa",
+      "phase": "test",
+      "decision": "approved",
+      "at": "2026-10-24T10:06:27"
+    },
+    {
+      "target": "RELEASE-002",
+      "by": "lenovo",
+      "role": "reviewer",
+      "phase": "release",
+      "decision": "approved",
+      "at": "2026-10-24T10:07:07"
+    },
+    {
+      "target": "RELEASE-001",
+      "by": "lenovo",
+      "role": "reviewer",
+      "phase": "release",
+      "decision": "approved",
+      "at": "2026-10-24T10:12:26"
+    },
+    {
+      "target": "RETRO-001",
+      "by": "lenovo",
+      "role": "reviewer",
+      "phase": "retro",
+      "decision": "approved",
+      "at": "2026-10-24T10:14:50"
+    }
+  ],
+  "history": [
+    {
+      "at": "2026-10-24T09:28:18",
+      "from": "intake",
+      "to": "design"
+    },
+    {
+      "at": "2026-10-24T09:28:34",
+      "from": "design",
+      "to": "plan"
+    },
+    {
+      "at": "2026-10-24T09:29:39",
+      "from": "plan",
+      "to": "develop"
+    },
+    {
+      "at": "2026-10-24T10:03:59",
+      "from": "develop",
+      "to": "review"
+    },
+    {
+      "at": "2026-10-24T10:05:00",
+      "from": "review",
+      "to": "test"
+    },
+    {
+      "at": "2026-10-24T10:06:27",
+      "from": "test",
+      "to": "release"
+    },
+    {
+      "at": "2026-10-24T10:14:03",
+      "from": "release",
+      "to": "retro"
+    }
+  ],
+  "counters": {
+    "task": 5
+  },
+  "last_gate": {
+    "phase": "retro",
+    "scope": "exit",
+    "mode": "graded",
+    "ok": true,
+    "errors": 0,
+    "warnings": 0,
+    "infos": 0,
+    "rules": 7
+  }
+}

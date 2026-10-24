@@ -3,17 +3,17 @@
 > 本文件由 devflow 自动生成，请勿手工编辑；修改请落到 `devflow.yaml` 与流程命令。
 
 - 项目：智能问数 Agent
-- 当前阶段：**release**
-- 最近更新：2026-10-24T10:12:26
-- 已完成阶段：intake、design、plan、develop、review、test
+- 当前阶段：**retro**
+- 最近更新：2026-10-24T10:14:50
+- 已完成阶段：intake、design、plan、develop、review、test、release
 
 ## 当前阶段目标
 
-**7.0 · 发布部署**：按发布计划灰度上线，流水线全绿、可观测到位、回滚方案可用
+**8.0 · 复盘归档**：用数据复盘目标达成情况，沉淀改进项并回流到需求池
 
 下一步：
-- 更新 CHANGELOG.md 并打 tag：`git tag vX.Y.Z`
-- 运行 `devflow phase enter --to retro` 进入复盘
+- 把改进项注册成任务：`devflow task add --title "..." --tag retro`
+- 运行 `devflow archive` 归档本次迭代
 
 ## 阶段进度
 
@@ -25,19 +25,19 @@
 | 4 | [x] develop | 已完成 开发执行 | 2026-10-24T09:29 | 2026-10-24T10:03 | 未通过 (1E/2W) |
 | 5 | [x] review | 已完成 代码评审 | 2026-10-24T10:03 | 2026-10-24T10:05 | - |
 | 6 | [x] test | 已完成 测试验证 | 2026-10-24T10:05 | 2026-10-24T10:06 | - |
-| 7 | [~] release | 进行中 发布部署 | 2026-10-24T10:06 | - | 通过 (0E/0W) |
-| 8 | [ ] retro | 未开始 复盘归档 | - | - | - |
+| 7 | [x] release | 已完成 发布部署 | 2026-10-24T10:06 | 2026-10-24T10:14 | 通过 (0E/0W) |
+| 8 | [~] retro | 进行中 复盘归档 | 2026-10-24T10:14 | - | 通过 (0E/0W) |
 
 ## 最近一次门禁结果
 
-**结论**：通过（错误 0 / 警告 0 / 提示 0，运行规则 12 条，模式 `strict`）
+**结论**：通过（错误 0 / 警告 0 / 提示 0，运行规则 7 条，模式 `graded`）
 
 所有规则均无异常。
 
 ## 任务与排期
 
-总数 4 ｜ 完成 4 ｜ 进行中 0 ｜ 阻塞 0 ｜ 待办 0 ｜ 逾期 0
-预估工时 28.0h，已完成 28.0h（100.0%）
+总数 5 ｜ 完成 4 ｜ 进行中 0 ｜ 阻塞 0 ｜ 待办 1 ｜ 逾期 0
+预估工时 32.0h，已完成 28.0h（87.5%）
 
 | ID | 状态 | 标题 | 负责人 | 估时(h) | 截止 | 标签 |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -45,6 +45,7 @@
 | T-002 | 完成 | OpenAI 兼容客户端与 LLM SqlGenerator(带回退) | lenovo | 10.0 | 2026-10-30 | - |
 | T-003 | 完成 | Embedding HTTP 实现与回退 | lenovo | 6.0 | 2026-10-31 | - |
 | T-004 | 完成 | GitHub Actions CI(测试+评估门禁) | lenovo | 4.0 | 2026-10-31 | - |
+| T-005 | 待办 | 配置 LLM Key 后跑 EXP-002 真机评估 | lenovo | 4.0 | 2026-11-14 | retro |
 
 ## 交付物清单
 
@@ -61,18 +62,19 @@
 | REVIEW-001 | review | REQ-001 全量交付评审 | `docs/review/REVIEW-001-req-001.md` | 2026-10-24T10:12 |
 | TEST-001 | testplan | REQ-001 功能与异常测试计划 | `docs/test/TEST-001-req-001.md` | 2026-10-24T10:12 |
 | RELEASE-001 | releaseplan | REQ-001 v0.1.0 首个演示版发布 | `docs/release/RELEASE-001-req-001-v0-1-0.md` | 2026-10-24T10:12 |
+| RETRO-001 | retro | REQ-002 迭代复盘 | `docs/retro/RETRO-001-req-002.md` | 2026-10-24T10:14 |
 
 ## 最近事件
 
 | 时间 | 事件 | 说明 |
 | --- | --- | --- |
+| 2026-10-24 10:14:50 | `archive` | snapshot=.devflow/archive/req-002-v0.2.0.json |
+| 2026-10-24 10:14:50 | `approve` | target=RETRO-001, by=lenovo, role=reviewer, decision=approved |
+| 2026-10-24 10:14:49 | `gate.run` | phase=retro, scope=exit, ok=True, errors=0, warnings=0 |
+| 2026-10-24 10:14:49 | `task.add` | id=T-005, title=配置 LLM Key 后跑 EXP-002 真机评估 |
+| 2026-10-24 10:14:03 | `doc.create` | id=RETRO-001, kind=retro, path=docs/retro/RETRO-001-req-002.md |
+| 2026-10-24 10:14:03 | `phase.enter` | target=retro, forced=False |
+| 2026-10-24 10:12:34 | `ci.record` | status=success, updated_at=2026-10-24T10:12:34, run_id=local-mvnw-125 |
 | 2026-10-24 10:12:26 | `gate.run` | phase=release, scope=exit, ok=True, errors=0, warnings=0 |
 | 2026-10-24 10:12:26 | `approve` | target=RELEASE-001, by=lenovo, role=reviewer, decision=approved |
 | 2026-10-24 10:12:25 | `sync` | added=5 |
-| 2026-10-24 10:12:06 | `gate.run` | phase=release, scope=exit, ok=False, errors=2, warnings=0 |
-| 2026-10-24 10:07:15 | `gate.run` | phase=release, scope=exit, ok=False, errors=3, warnings=0 |
-| 2026-10-24 10:07:07 | `gate.run` | phase=release, scope=exit, ok=False, errors=3, warnings=0 |
-| 2026-10-24 10:07:07 | `approve` | target=RELEASE-002, by=lenovo, role=reviewer, decision=approved |
-| 2026-10-24 10:06:27 | `doc.create` | id=RELEASE-002, kind=releaseplan, path=docs/release/RELEASE-002-req-002-v0-2-0.md |
-| 2026-10-24 10:06:27 | `phase.enter` | target=release, forced=False |
-| 2026-10-24 10:06:27 | `approve` | target=TEST-002, by=ZCode, role=qa, decision=approved |
