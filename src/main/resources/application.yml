@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: chatbi-agent
+server:
+  port: 8080
