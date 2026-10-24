@@ -20,6 +20,9 @@ import java.util.Map;
 @Service
 public class EvaluationService {
 
+    /** 评估以种子管理员(全权限)身份路由,衡量系统能力而非个别用户权限 */
+    private static final long EVAL_USER_ID = 3L;
+
     public static final String CATEGORY_NL2SQL = "NL2SQL";
     public static final String CATEGORY_RAG = "RAG";
     public static final String CATEGORY_REFUSAL = "REFUSAL";
@@ -89,7 +92,7 @@ public class EvaluationService {
     }
 
     private CaseResult evaluateNl2sql(EvaluationCaseRepository.EvalCase evalCase) {
-        RagRouter.RoutedAnswer routed = ragRouter.route(evalCase.question());
+        RagRouter.RoutedAnswer routed = ragRouter.route(EVAL_USER_ID, evalCase.question());
         boolean passed = RagRouter.ROUTE_NL2SQL.equals(routed.route())
                 && (evalCase.expectedMetric() == null || evalCase.expectedMetric().equals(routed.sql() == null
                         ? null : routed.sql().metric()))
@@ -100,7 +103,7 @@ public class EvaluationService {
     }
 
     private CaseResult evaluateRag(EvaluationCaseRepository.EvalCase evalCase) {
-        RagRouter.RoutedAnswer routed = ragRouter.route(evalCase.question());
+        RagRouter.RoutedAnswer routed = ragRouter.route(EVAL_USER_ID, evalCase.question());
         boolean passed = RagRouter.ROUTE_RAG.equals(routed.route())
                 && (evalCase.expectedAnswerContains() == null
                         || routed.answer().contains(evalCase.expectedAnswerContains()));
@@ -109,7 +112,7 @@ public class EvaluationService {
     }
 
     private CaseResult evaluateRefusal(EvaluationCaseRepository.EvalCase evalCase) {
-        RagRouter.RoutedAnswer routed = ragRouter.route(evalCase.question());
+        RagRouter.RoutedAnswer routed = ragRouter.route(EVAL_USER_ID, evalCase.question());
         boolean passed = RagRouter.ROUTE_REFUSED.equals(routed.route());
         return new CaseResult(evalCase.id(), evalCase.category(), evalCase.question(), passed,
                 "route=" + routed.route());

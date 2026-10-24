@@ -38,7 +38,7 @@ class CacheAuditApiTests {
     @Test
     void repeatedConfirmServedFromCache() throws Exception {
         String sql = sqlGenerator.generate("北京的 GMV").sql();
-        String body = "{\"userId\":1,\"sql\":%s}".formatted(json(sql));
+        String body = "{\"userId\":3,\"sql\":%s}".formatted(json(sql));
 
         mockMvc.perform(post("/api/sql/confirm").contentType(MediaType.APPLICATION_JSON).content(body))
                 .andExpect(status().isOk())
@@ -61,13 +61,13 @@ class CacheAuditApiTests {
 
         mockMvc.perform(post("/api/sql/confirm")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"userId\":2,\"sql\":%s}".formatted(json(sql))))
+                        .content("{\"userId\":3,\"sql\":%s}".formatted(json(sql))))
                 .andExpect(jsonPath("$.cacheHit").value(false));
     }
 
     @Test
     void executedConfirmIsAudited() throws Exception {
-        String sql = sqlGenerator.generate("上海的订单量").sql();
+        String sql = sqlGenerator.generate("上海的 GMV").sql();
         mockMvc.perform(post("/api/sql/confirm")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"userId\":2,\"conversationId\":null,\"sql\":%s}".formatted(json(sql))))
@@ -99,7 +99,7 @@ class CacheAuditApiTests {
     @Test
     void cacheHitIsAudited() throws Exception {
         String sql = sqlGenerator.generate("广州的退款率").sql();
-        String body = "{\"userId\":1,\"sql\":%s}".formatted(json(sql));
+        String body = "{\"userId\":3,\"sql\":%s}".formatted(json(sql));
         mockMvc.perform(post("/api/sql/confirm").contentType(MediaType.APPLICATION_JSON).content(body))
                 .andExpect(status().isOk());
         mockMvc.perform(post("/api/sql/confirm").contentType(MediaType.APPLICATION_JSON).content(body))

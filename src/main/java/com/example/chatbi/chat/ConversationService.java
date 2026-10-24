@@ -2,6 +2,7 @@ package com.example.chatbi.chat;
 
 import com.example.chatbi.agent.ToolCall;
 import com.example.chatbi.api.NotFoundException;
+import com.example.chatbi.api.PermissionDeniedException;
 import com.example.chatbi.audit.AuditService;
 import com.example.chatbi.rag.RagRouter;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -60,7 +61,14 @@ public class ConversationService {
         long userMessageId = repository.insertMessage(
                 new ChatMessage(null, conversation.id(), "USER", question, null, null));
 
-        RagRouter.RoutedAnswer routed = ragRouter.route(question);
+        RagRouter.RoutedAnswer routed;
+        try {
+            routed = ragRouter.route(conversation.userId(), question);
+        } catch (PermissionDeniedException e) {
+            auditService.record(conversation.userId(), conversation.id(), AuditService.ACTION_CHAT, question,
+                    null, false, "PERMISSION_DENIED: " + e.getMessage());
+            throw e;
+        }
         boolean requiresTool = RagRouter.ROUTE_NL2SQL.equals(routed.route()) && routed.sql() != null;
         ToolCall toolCall = requiresTool
                 ? new ToolCall(UUID.randomUUID().toString(), "execute_sql", Map.of("sql", routed.sql().sql()))

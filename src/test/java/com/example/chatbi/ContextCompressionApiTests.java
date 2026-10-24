@@ -55,12 +55,12 @@ class ContextCompressionApiTests {
 
     @Test
     void summaryMentionsToolCallCount() throws Exception {
-        String conversationId = createConversation(1);
+        String conversationId = createConversation(2);
         for (int i = 1; i <= 6; i++) {
-            chat(conversationId, 1, "上海近" + i + "天GMV");
+            chat(conversationId, 2, "上海近" + i + "天GMV");
         }
 
-        mockMvc.perform(get("/api/conversations/{id}/context", conversationId).param("userId", "1"))
+        mockMvc.perform(get("/api/conversations/{id}/context", conversationId).param("userId", "2"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.summary").value(
                         "此前对话共 3 次提问,主要问题: 上海近1天GMV / 上海近2天GMV / 上海近3天GMV;其间生成过 3 次查询工具调用。"));

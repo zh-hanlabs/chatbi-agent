@@ -1,6 +1,6 @@
 # devflow 项目契约
 #
-# 基线：minimal
+# 基线：standard
 #   extends 可写单个内置基线名（standard / minimal / strict / skeleton），
 #   也可以写成列表做多继承：extends: [standard, .devflow/profiles/团队基线.yaml]
 #   把同名文件放进 .devflow/profiles/ 即可覆盖内置基线。
@@ -58,11 +58,11 @@
 #   devflow contract primitives  查看可用的检查原语
 #   devflow profile list         查看内置基线
 
-extends: minimal
+extends: standard
 
 project:
   name: 智能问数 Agent
-  slug: 
+  slug: chatbi-agent
   owner: lenovo
   repo: 
 

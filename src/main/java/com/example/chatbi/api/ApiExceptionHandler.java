@@ -29,6 +29,12 @@ public class ApiExceptionHandler {
         return ResponseEntity.status(403).body(Map.of("error", e.getMessage()));
     }
 
+    /** 数据权限越权(区域/指标),生成层入口统一 403 */
+    @ExceptionHandler(PermissionDeniedException.class)
+    public ResponseEntity<Map<String, String>> permissionDenied(PermissionDeniedException e) {
+        return ResponseEntity.status(403).body(Map.of("error", e.getMessage()));
+    }
+
     /** 安全校验通过但 SQL 本身有误(列/表不存在、语法错),是客户端问题而非服务端故障 */
     @ExceptionHandler(org.springframework.jdbc.BadSqlGrammarException.class)
     public ResponseEntity<Map<String, String>> badSqlGrammar(org.springframework.jdbc.BadSqlGrammarException e) {
