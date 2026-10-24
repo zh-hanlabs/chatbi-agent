@@ -1,5 +1,32 @@
 spring:
   application:
     name: chatbi-agent
+  datasource:
+    url: jdbc:mysql://localhost:3306/chatbi_agent?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+    username: ${CHATBI_DB_USER:chatbi}
+    password: ${CHATBI_DB_PASSWORD:chatbi}
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+  data:
+    redis:
+      host: ${CHATBI_REDIS_HOST:localhost}
+      port: ${CHATBI_REDIS_PORT:6379}
+
+chatbi:
+  cache:
+    # redis: 生产/联调;memory: 本地无 Redis 或测试时的进程内兜底
+    type: ${CHATBI_CACHE_TYPE:redis}
+    ttl-seconds: 300
+  rag:
+    top-k: 3
+    # 低于该相似度拒答,不编造内容
+    min-score: 0.2
+  context:
+    # 历史消息超过该条数触发压缩
+    compress-threshold: 10
+    # 压缩后保留的最近消息条数
+    keep-recent: 6
+
 server:
   port: 8080

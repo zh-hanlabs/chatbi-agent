@@ -4,7 +4,7 @@
 
 - 项目：智能问数 Agent
 - 当前阶段：**develop**
-- 最近更新：2026-10-24T04:05:05
+- 最近更新：2026-10-24T08:34:21
 - 已完成阶段：intake、plan
 
 ## 当前阶段目标
@@ -32,30 +32,30 @@
 
 | 级别 | 规则 | 问题 | 位置 | 修复建议 |
 | --- | --- | --- | --- | --- |
-| 警告 | `repo.tree_clean` | 有 9 处未提交改动，例如：M .devflow/log.jsonl | - | `git add -A && git commit -m "chore: ..."`；若某文件是生成产物，可加入 devflow.yaml#repo.clean_ignore |
+| 警告 | `repo.tree_clean` | 有 2 处未提交改动，例如：M .devflow/log.jsonl | - | `git add -A && git commit -m "chore: ..."`；若某文件是生成产物，可加入 devflow.yaml#repo.clean_ignore |
 
 ## 任务与排期
 
-总数 15 ｜ 完成 1 ｜ 进行中 0 ｜ 阻塞 0 ｜ 待办 14 ｜ 逾期 0
-预估工时 144.0h，已完成 10.0h（6.9%）
+总数 15 ｜ 完成 15 ｜ 进行中 0 ｜ 阻塞 0 ｜ 待办 0 ｜ 逾期 0
+预估工时 144.0h，已完成 144.0h（100.0%）
 
 | ID | 状态 | 标题 | 负责人 | 估时(h) | 截止 | 标签 |
 | --- | --- | --- | --- | --- | --- | --- |
 | T-001 | 完成 | M1：项目骨架与模型工具调用跑通 | lenovo | 10.0 | 2026-11-02 | m1 |
-| T-002 | 待办 | M1：电商演示数据模型与初始化脚本 | lenovo | 8.0 | 2026-11-02 | m1 |
-| T-003 | 待办 | M1：对话接口与消息持久化 | lenovo | 10.0 | 2026-11-04 | m1 |
-| T-004 | 待办 | M2：表结构检索与 NL2SQL 生成 | lenovo | 12.0 | 2026-11-09 | m2 |
-| T-005 | 待办 | M2：SQL 只读安全校验与执行确认 | lenovo | 12.0 | 2026-11-11 | m2 |
-| T-006 | 待办 | M2：Redis 高频问答缓存与审计日志 | lenovo | 8.0 | 2026-11-13 | m2 |
-| T-007 | 待办 | M3：文档上传、切分与向量化管道 | lenovo | 10.0 | 2026-11-18 | m3 |
-| T-008 | 待办 | M3：RAG 检索、引用回答与拒答路由 | lenovo | 12.0 | 2026-11-20 | m3 |
-| T-009 | 待办 | M3：多轮上下文压缩与对话摘要 | lenovo | 8.0 | 2026-11-22 | m3 |
-| T-010 | 待办 | M4：50 条评估集与自动评估脚本 | lenovo | 12.0 | 2026-11-27 | m4 |
-| T-011 | 待办 | M4：Prompt、chunk、TopK 对比实验 | lenovo | 8.0 | 2026-11-29 | m4 |
-| T-012 | 待办 | M4：核心单元测试与异常场景测试 | lenovo | 12.0 | 2026-12-02 | m4 |
-| T-013 | 待办 | M5：Docker Compose 部署与环境隔离 | lenovo | 8.0 | 2026-12-04 | m5 |
-| T-014 | 待办 | M5：README、架构图与 API 文档 | lenovo | 8.0 | 2026-12-06 | m5 |
-| T-015 | 待办 | M5：演示录屏与面试深挖手册 | lenovo | 6.0 | 2026-12-07 | m5 |
+| T-002 | 完成 | M1：电商演示数据模型与初始化脚本 | lenovo | 8.0 | 2026-11-02 | m1 |
+| T-003 | 完成 | M1：对话接口与消息持久化 | lenovo | 10.0 | 2026-11-04 | m1 |
+| T-004 | 完成 | M2：表结构检索与 NL2SQL 生成 | lenovo | 12.0 | 2026-11-09 | m2 |
+| T-005 | 完成 | M2：SQL 只读安全校验与执行确认 | lenovo | 12.0 | 2026-11-11 | m2 |
+| T-006 | 完成 | M2：Redis 高频问答缓存与审计日志 | lenovo | 8.0 | 2026-11-13 | m2 |
+| T-007 | 完成 | M3：文档上传、切分与向量化管道 | lenovo | 10.0 | 2026-11-18 | m3 |
+| T-008 | 完成 | M3：RAG 检索、引用回答与拒答路由 | lenovo | 12.0 | 2026-11-20 | m3 |
+| T-009 | 完成 | M3：多轮上下文压缩与对话摘要 | lenovo | 8.0 | 2026-11-22 | m3 |
+| T-010 | 完成 | M4：50 条评估集与自动评估脚本 | lenovo | 12.0 | 2026-11-27 | m4 |
+| T-011 | 完成 | M4：Prompt、chunk、TopK 对比实验 | lenovo | 8.0 | 2026-11-29 | m4 |
+| T-012 | 完成 | M4：核心单元测试与异常场景测试 | lenovo | 12.0 | 2026-12-02 | m4 |
+| T-013 | 完成 | M5：Docker Compose 部署与环境隔离 | lenovo | 8.0 | 2026-12-04 | m5 |
+| T-014 | 完成 | M5：README、架构图与 API 文档 | lenovo | 8.0 | 2026-12-06 | m5 |
+| T-015 | 完成 | M5：演示录屏与面试深挖手册 | lenovo | 6.0 | 2026-12-07 | m5 |
 
 ## 交付物清单
 
@@ -68,13 +68,13 @@
 
 | 时间 | 事件 | 说明 |
 | --- | --- | --- |
-| 2026-10-24 04:05:05 | `gate.run` | phase=develop, scope=exit, ok=True, errors=0, warnings=1 |
-| 2026-10-24 04:05:05 | `task.update` | id=T-001, fields=status |
-| 2026-10-24 03:54:01 | `gate.run` | phase=develop, scope=exit, ok=True, errors=0, warnings=1 |
-| 2026-10-24 03:54:01 | `task.update` | id=T-001, fields=status |
-| 2026-10-24 03:53:52 | `gate.run` | phase=develop, scope=exit, ok=True, errors=0, warnings=3 |
-| 2026-10-24 03:52:52 | `gate.run` | phase=develop, scope=exit, ok=True, errors=0, warnings=3 |
-| 2026-10-24 03:52:43 | `gate.run` | phase=develop, scope=exit, ok=True, errors=0, warnings=2 |
-| 2026-10-24 03:52:05 | `gate.run` | phase=develop, scope=exit, ok=True, errors=0, warnings=2 |
-| 2026-10-24 03:51:57 | `phase.enter` | target=develop, forced=False |
-| 2026-10-24 03:51:56 | `approve` | target=PLAN-001, by=Codex, role=reviewer, decision=approved |
+| 2026-10-24 08:34:21 | `gate.run` | phase=develop, scope=exit, ok=True, errors=0, warnings=1 |
+| 2026-10-24 08:34:21 | `task.update` | id=T-015, fields=status |
+| 2026-10-24 08:32:19 | `task.update` | id=T-015, fields=status |
+| 2026-10-24 08:31:59 | `gate.run` | phase=develop, scope=exit, ok=True, errors=0, warnings=1 |
+| 2026-10-24 08:31:59 | `task.update` | id=T-014, fields=status |
+| 2026-10-24 08:30:00 | `task.update` | id=T-014, fields=status |
+| 2026-10-24 08:29:48 | `gate.run` | phase=develop, scope=exit, ok=True, errors=0, warnings=1 |
+| 2026-10-24 08:29:48 | `task.update` | id=T-013, fields=status |
+| 2026-10-24 08:08:19 | `task.update` | id=T-013, fields=status |
+| 2026-10-24 08:07:21 | `gate.run` | phase=develop, scope=exit, ok=True, errors=0, warnings=1 |

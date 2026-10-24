@@ -1,0 +1,32 @@
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: chatbi-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: chatbi_root
+      MYSQL_DATABASE: chatbi_agent
+      MYSQL_USER: chatbi
+      MYSQL_PASSWORD: chatbi
+    ports:
+      - "3306:3306"
+    volumes:
+      - chatbi-mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  redis:
+    image: redis:7-alpine
+    container_name: chatbi-redis
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+volumes:
+  chatbi-mysql-data:
