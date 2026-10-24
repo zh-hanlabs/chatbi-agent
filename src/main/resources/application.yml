@@ -1,5 +1,13 @@
 spring:
   application:
     name: chatbi-agent
+  datasource:
+    url: jdbc:mysql://localhost:3306/chatbi_agent?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+    username: ${CHATBI_DB_USER:chatbi}
+    password: ${CHATBI_DB_PASSWORD:chatbi}
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
 server:
   port: 8080
