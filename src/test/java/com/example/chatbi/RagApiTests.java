@@ -44,7 +44,7 @@ class RagApiTests {
 
         mockMvc.perform(post("/api/rag/query")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"question\":\"GMV 口径指的是什么\"}"))
+                        .content("{\"userId\":3,\"question\":\"GMV 口径指的是什么\"}"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.route").value("RAG"))
                 .andExpect(jsonPath("$.answer").value("GMV 的口径是已完成订单的金额总和。"))
@@ -57,7 +57,7 @@ class RagApiTests {
     void metricQuestionRoutesToNl2sql() throws Exception {
         mockMvc.perform(post("/api/rag/query")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"question\":\"北京上个月的 GMV 是多少\"}"))
+                        .content("{\"userId\":3,\"question\":\"北京上个月的 GMV 是多少\"}"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.route").value("NL2SQL"))
                 .andExpect(jsonPath("$.sql.metric").value("GMV"))
@@ -70,7 +70,7 @@ class RagApiTests {
 
         mockMvc.perform(post("/api/rag/query")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"question\":\"隔壁食堂今天中午有什么菜\"}"))
+                        .content("{\"userId\":3,\"question\":\"隔壁食堂今天中午有什么菜\"}"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.route").value("REFUSED"))
                 .andExpect(jsonPath("$.answer").isNotEmpty())
@@ -81,7 +81,7 @@ class RagApiTests {
     void emptyKnowledgeBaseRefuses() throws Exception {
         mockMvc.perform(post("/api/rag/query")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"question\":\"GMV 口径指的是什么\"}"))
+                        .content("{\"userId\":3,\"question\":\"GMV 口径指的是什么\"}"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.route").value("REFUSED"));
     }
@@ -93,7 +93,7 @@ class RagApiTests {
 
         mockMvc.perform(post("/api/rag/retrieve")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"question\":\"退款率的定义\"}"))
+                        .content("{\"userId\":3,\"question\":\"退款率的定义\"}"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].content").value("退款率是退款订单占总订单的比例。"))
                 .andExpect(jsonPath("$[0].documentTitle").value("退款口径"))

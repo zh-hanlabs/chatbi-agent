@@ -3,6 +3,8 @@ package com.example.chatbi.audit;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -38,6 +40,8 @@ public class AuditService {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    /** 独立事务:调用方(如 chat)因异常回滚时,审计记录必须留存 */
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void record(long userId, String conversationId, String action, String question, String generatedSql,
                        boolean allowed, String reason) {
         jdbcTemplate.update(

@@ -71,7 +71,7 @@ class Nl2SqlApiTests {
     void gmvQuestionWithRegionGeneratesCompletedSumSql() throws Exception {
         mockMvc.perform(post("/api/nl2sql")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"question\":\"北京上个月的 GMV 是多少\"}"))
+                        .content("{\"userId\":3,\"question\":\"北京上个月的 GMV 是多少\"}"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.metric").value("GMV"))
                 .andExpect(jsonPath("$.sql").value(
@@ -86,7 +86,7 @@ class Nl2SqlApiTests {
     void orderCountQuestionWithoutRegionHasNoJoin() throws Exception {
         mockMvc.perform(post("/api/nl2sql")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"question\":\"总订单量有多少\"}"))
+                        .content("{\"userId\":3,\"question\":\"总订单量有多少\"}"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.metric").value("ORDER_COUNT"))
                 .andExpect(jsonPath("$.sql").value("SELECT COUNT(*) AS order_count FROM orders o"));
@@ -96,7 +96,7 @@ class Nl2SqlApiTests {
     void refundRateQuestionUsesCaseWhen() throws Exception {
         mockMvc.perform(post("/api/nl2sql")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"question\":\"上海的退款率\"}"))
+                        .content("{\"userId\":3,\"question\":\"上海的退款率\"}"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.metric").value("REFUND_RATE"))
                 .andExpect(jsonPath("$.sql").value(
@@ -108,7 +108,7 @@ class Nl2SqlApiTests {
     void recentDaysQuestionAddsTimeWindow() throws Exception {
         mockMvc.perform(post("/api/nl2sql")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"question\":\"近7天北京的订单量\"}"))
+                        .content("{\"userId\":3,\"question\":\"近7天北京的订单量\"}"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.metric").value("ORDER_COUNT"))
                 .andExpect(jsonPath("$.sql").value(
@@ -120,7 +120,7 @@ class Nl2SqlApiTests {
     void unrecognizedQuestionIsRejected() throws Exception {
         mockMvc.perform(post("/api/nl2sql")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"question\":\"今天天气怎么样\"}"))
+                        .content("{\"userId\":3,\"question\":\"今天天气怎么样\"}"))
                 .andExpect(status().isUnprocessableEntity())
                 .andExpect(jsonPath("$.error").isNotEmpty());
     }
@@ -129,7 +129,7 @@ class Nl2SqlApiTests {
     void blankQuestionIsRejected() throws Exception {
         mockMvc.perform(post("/api/nl2sql")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"question\":\" \"}"))
+                        .content("{\"userId\":3,\"question\":\" \"}"))
                 .andExpect(status().isBadRequest());
     }
 }

@@ -4,6 +4,7 @@ import com.example.chatbi.rag.RagRouter;
 import com.example.chatbi.rag.RetrievalService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,13 +23,13 @@ public class RagController {
         this.retrievalService = retrievalService;
     }
 
-    public record RagRequest(@NotBlank String question) {
+    public record RagRequest(@NotNull Long userId, @NotBlank String question) {
     }
 
-    /** 完整路由:NL2SQL → RAG 引用回答 → 拒答 */
+    /** 完整路由:NL2SQL(含权限裁决) → RAG 引用回答 → 拒答 */
     @PostMapping("/query")
     public ResponseEntity<RagRouter.RoutedAnswer> query(@Valid @RequestBody RagRequest request) {
-        return ResponseEntity.ok(ragRouter.route(request.question()));
+        return ResponseEntity.ok(ragRouter.route(request.userId(), request.question()));
     }
 
     /** 仅检索:返回 TopK 相关块与得分,便于调参与演示 */

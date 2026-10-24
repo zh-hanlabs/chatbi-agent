@@ -1,7 +1,9 @@
 package com.example.chatbi.nl2sql;
 
+import com.example.chatbi.api.PermissionDeniedException;
 import com.example.chatbi.api.SqlNotAllowedException;
 import com.example.chatbi.audit.AuditService;
+import com.example.chatbi.authz.PermissionService;
 import com.example.chatbi.cache.ChatCache;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
@@ -42,11 +44,12 @@ public class SqlExecutionService {
     private final JdbcTemplate jdbcTemplate;
     private final ChatCache chatCache;
     private final AuditService auditService;
+    private final PermissionService permissionService;
     private final ObjectMapper objectMapper;
     private final long cacheTtlSeconds;
 
     public SqlExecutionService(SqlSecurityValidator validator, DataSource dataSource, ChatCache chatCache,
-            AuditService auditService, ObjectMapper objectMapper,
+            AuditService auditService, PermissionService permissionService, ObjectMapper objectMapper,
             @Value("${chatbi.cache.ttl-seconds:300}") long cacheTtlSeconds) {
         this.validator = validator;
         JdbcTemplate template = new JdbcTemplate(dataSource);
@@ -55,6 +58,7 @@ public class SqlExecutionService {
         this.jdbcTemplate = template;
         this.chatCache = chatCache;
         this.auditService = auditService;
+        this.permissionService = permissionService;
         this.objectMapper = objectMapper;
         this.cacheTtlSeconds = cacheTtlSeconds;
     }
@@ -72,6 +76,14 @@ public class SqlExecutionService {
             auditService.record(userId, conversationId, AuditService.ACTION_SQL_CONFIRM, sql, sql, false,
                     verdict.reason());
             throw new SqlNotAllowedException(verdict.reason());
+        }
+        try {
+            // confirm 层权限裁决:SQL 中的区域字面量必须有权(422 语义,与校验拒绝一致)
+            permissionService.checkRegionsInSql(userId, sql);
+        } catch (PermissionDeniedException e) {
+            auditService.record(userId, conversationId, AuditService.ACTION_SQL_CONFIRM, sql, sql, false,
+                    "PERMISSION_DENIED: " + e.getMessage());
+            throw new SqlNotAllowedException(e.getMessage());
         }
 
         List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql);
