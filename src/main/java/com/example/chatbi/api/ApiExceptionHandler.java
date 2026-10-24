@@ -13,4 +13,9 @@ public class ApiExceptionHandler {
     public ResponseEntity<Map<String, String>> notFound(NotFoundException e) {
         return ResponseEntity.status(404).body(Map.of("error", e.getMessage()));
     }
+
+    @ExceptionHandler(UnsupportedQuestionException.class)
+    public ResponseEntity<Map<String, String>> unsupportedQuestion(UnsupportedQuestionException e) {
+        return ResponseEntity.unprocessableEntity().body(Map.of("error", e.getMessage()));
+    }
 }
