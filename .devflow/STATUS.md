@@ -4,7 +4,7 @@
 
 - 项目：智能问数 Agent
 - 当前阶段：**develop**
-- 最近更新：2026-10-24T07:00:49
+- 最近更新：2026-10-24T07:09:03
 - 已完成阶段：intake、plan
 
 ## 当前阶段目标
@@ -36,8 +36,8 @@
 
 ## 任务与排期
 
-总数 15 ｜ 完成 9 ｜ 进行中 0 ｜ 阻塞 0 ｜ 待办 6 ｜ 逾期 0
-预估工时 144.0h，已完成 90.0h（62.5%）
+总数 15 ｜ 完成 10 ｜ 进行中 0 ｜ 阻塞 0 ｜ 待办 5 ｜ 逾期 0
+预估工时 144.0h，已完成 102.0h（70.8%）
 
 | ID | 状态 | 标题 | 负责人 | 估时(h) | 截止 | 标签 |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -50,7 +50,7 @@
 | T-007 | 完成 | M3：文档上传、切分与向量化管道 | lenovo | 10.0 | 2026-11-18 | m3 |
 | T-008 | 完成 | M3：RAG 检索、引用回答与拒答路由 | lenovo | 12.0 | 2026-11-20 | m3 |
 | T-009 | 完成 | M3：多轮上下文压缩与对话摘要 | lenovo | 8.0 | 2026-11-22 | m3 |
-| T-010 | 待办 | M4：50 条评估集与自动评估脚本 | lenovo | 12.0 | 2026-11-27 | m4 |
+| T-010 | 完成 | M4：50 条评估集与自动评估脚本 | lenovo | 12.0 | 2026-11-27 | m4 |
 | T-011 | 待办 | M4：Prompt、chunk、TopK 对比实验 | lenovo | 8.0 | 2026-11-29 | m4 |
 | T-012 | 待办 | M4：核心单元测试与异常场景测试 | lenovo | 12.0 | 2026-12-02 | m4 |
 | T-013 | 待办 | M5：Docker Compose 部署与环境隔离 | lenovo | 8.0 | 2026-12-04 | m5 |
@@ -68,6 +68,9 @@
 
 | 时间 | 事件 | 说明 |
 | --- | --- | --- |
+| 2026-10-24 07:09:03 | `gate.run` | phase=develop, scope=exit, ok=True, errors=0, warnings=1 |
+| 2026-10-24 07:09:03 | `task.update` | id=T-010, fields=status |
+| 2026-10-24 07:02:08 | `task.update` | id=T-010, fields=status |
 | 2026-10-24 07:00:49 | `gate.run` | phase=develop, scope=exit, ok=True, errors=0, warnings=1 |
 | 2026-10-24 07:00:49 | `task.update` | id=T-009, fields=status |
 | 2026-10-24 06:57:59 | `task.update` | id=T-009, fields=status |
@@ -75,6 +78,3 @@
 | 2026-10-24 06:57:35 | `task.update` | id=T-008, fields=status |
 | 2026-10-24 06:53:32 | `task.update` | id=T-008, fields=status |
 | 2026-10-24 06:52:55 | `gate.run` | phase=develop, scope=exit, ok=True, errors=0, warnings=1 |
-| 2026-10-24 06:52:55 | `task.update` | id=T-007, fields=status |
-| 2026-10-24 06:49:29 | `task.update` | id=T-007, fields=status |
-| 2026-10-24 05:56:04 | `gate.run` | phase=develop, scope=exit, ok=True, errors=0, warnings=1 |
