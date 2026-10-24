@@ -22,6 +22,11 @@ chatbi:
     top-k: 3
     # 低于该相似度拒答,不编造内容
     min-score: 0.2
+  context:
+    # 历史消息超过该条数触发压缩
+    compress-threshold: 10
+    # 压缩后保留的最近消息条数
+    keep-recent: 6
 
 server:
   port: 8080

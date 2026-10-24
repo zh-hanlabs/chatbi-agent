@@ -1,6 +1,7 @@
 package com.example.chatbi.api;
 
 import com.example.chatbi.chat.ChatMessage;
+import com.example.chatbi.chat.ContextCompressor;
 import com.example.chatbi.chat.Conversation;
 import com.example.chatbi.chat.ConversationService;
 import jakarta.validation.Valid;
@@ -47,6 +48,13 @@ public class ConversationController {
     @GetMapping("/{id}/messages")
     public ResponseEntity<List<ChatMessage>> messages(@PathVariable String id, @RequestParam long userId) {
         return ResponseEntity.ok(conversationService.listMessages(id, userId));
+    }
+
+    /** 多轮上下文压缩视图:超出阈值的历史折叠为摘要,只保留最近几轮原文 */
+    @GetMapping("/{id}/context")
+    public ResponseEntity<ContextCompressor.CompressedContext> context(@PathVariable String id,
+            @RequestParam long userId) {
+        return ResponseEntity.ok(conversationService.buildContext(id, userId));
     }
 
     @PostMapping("/{id}/chat")

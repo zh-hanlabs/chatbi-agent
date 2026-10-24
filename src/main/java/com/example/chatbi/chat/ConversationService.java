@@ -24,13 +24,15 @@ public class ConversationService {
     private final RagRouter ragRouter;
     private final ObjectMapper objectMapper;
     private final AuditService auditService;
+    private final ContextCompressor contextCompressor;
 
     public ConversationService(ConversationRepository repository, RagRouter ragRouter, ObjectMapper objectMapper,
-            AuditService auditService) {
+            AuditService auditService, ContextCompressor contextCompressor) {
         this.repository = repository;
         this.ragRouter = ragRouter;
         this.objectMapper = objectMapper;
         this.auditService = auditService;
+        this.contextCompressor = contextCompressor;
     }
 
     @Transactional
@@ -74,6 +76,11 @@ public class ConversationService {
         auditService.record(conversation.userId(), conversation.id(), AuditService.ACTION_CHAT, question,
                 routed.sql() == null ? null : routed.sql().sql(), true, "route=" + routed.route());
         return new ChatReply(answer, toolCall, requiresTool, userMessageId, assistantMessageId);
+    }
+
+    public ContextCompressor.CompressedContext buildContext(String conversationId, long userId) {
+        Conversation conversation = requireOwnedConversation(conversationId, userId);
+        return contextCompressor.compress(repository.findMessages(conversation.id()));
     }
 
     private void requireUser(long userId) {
