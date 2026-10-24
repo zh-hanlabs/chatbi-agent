@@ -64,3 +64,6 @@
 {"ts": "2026-10-24T08:03:44", "event": "task.update", "id": "T-012", "fields": "status"}
 {"ts": "2026-10-24T08:07:21", "event": "task.update", "id": "T-012", "fields": "status"}
 {"ts": "2026-10-24T08:07:21", "event": "gate.run", "phase": "develop", "scope": "exit", "ok": true, "errors": 0, "warnings": 1}
+{"ts": "2026-10-24T08:08:19", "event": "task.update", "id": "T-013", "fields": "status"}
+{"ts": "2026-10-24T08:29:48", "event": "task.update", "id": "T-013", "fields": "status"}
+{"ts": "2026-10-24T08:29:48", "event": "gate.run", "phase": "develop", "scope": "exit", "ok": true, "errors": 0, "warnings": 1}
