@@ -4,7 +4,7 @@
 
 - 项目：智能问数 Agent
 - 当前阶段：**develop**
-- 最近更新：2026-10-24T03:53:52
+- 最近更新：2026-10-24T03:54:01
 - 已完成阶段：intake、plan
 
 ## 当前阶段目标
@@ -21,29 +21,27 @@
 | --- | --- | --- | --- | --- | --- |
 | 1 | [x] intake | 已完成 需求立项 | 2026-10-24T03:47 | 2026-10-24T03:50 | 通过 (0E/1W) |
 | 3 | [x] plan | 已完成 排期计划 | 2026-10-24T03:50 | 2026-10-24T03:51 | 通过 (0E/0W) |
-| 4 | [~] develop | 进行中 开发执行 | 2026-10-24T03:51 | - | 通过 (0E/3W) |
+| 4 | [~] develop | 进行中 开发执行 | 2026-10-24T03:51 | - | 通过 (0E/1W) |
 | 5 | [ ] review | 未开始 代码评审 | - | - | - |
 | 6 | [ ] test | 未开始 测试验证 | - | - | - |
 | 7 | [ ] release | 未开始 发布部署 | - | - | - |
 
 ## 最近一次门禁结果
 
-**结论**：通过（错误 0 / 警告 3 / 提示 0，运行规则 7 条，模式 `warn`）
+**结论**：通过（错误 0 / 警告 1 / 提示 0，运行规则 7 条，模式 `warn`）
 
 | 级别 | 规则 | 问题 | 位置 | 修复建议 |
 | --- | --- | --- | --- | --- |
-| 警告 | `repo.branch` | 分支 `main` 不符合 develop 阶段规范：feature 需匹配 ^feature/[A-Za-z0-9._-]+-[A-Za-z0-9._-]+$；fix 需匹配 ^(fix\|hotfix)/[A-Za-z0-9._-]+-[A-Za-z0-9._-]+$ | - | `git checkout -b feature/<需求号>-<简述>` |
-| 警告 | `repo.tree_clean` | 有 16 处未提交改动，例如：D  tools/devflow/lib/__pycache__/__init__.cpython-313.pyc | - | `git add -A && git commit -m "chore: ..."`；若某文件是生成产物，可加入 devflow.yaml#repo.clean_ignore |
-| 警告 | `task.in_progress` | 没有任何任务处于 doing/done，开发与排期脱节 | - | - |
+| 警告 | `repo.tree_clean` | 有 2 处未提交改动，例如：M .devflow/log.jsonl | - | `git add -A && git commit -m "chore: ..."`；若某文件是生成产物，可加入 devflow.yaml#repo.clean_ignore |
 
 ## 任务与排期
 
-总数 15 ｜ 完成 0 ｜ 进行中 0 ｜ 阻塞 0 ｜ 待办 15 ｜ 逾期 0
+总数 15 ｜ 完成 0 ｜ 进行中 1 ｜ 阻塞 0 ｜ 待办 14 ｜ 逾期 0
 预估工时 144.0h，已完成 0.0h（0.0%）
 
 | ID | 状态 | 标题 | 负责人 | 估时(h) | 截止 | 标签 |
 | --- | --- | --- | --- | --- | --- | --- |
-| T-001 | 待办 | M1：项目骨架与模型工具调用跑通 | lenovo | 10.0 | 2026-11-02 | m1 |
+| T-001 | 进行中 | M1：项目骨架与模型工具调用跑通 | lenovo | 10.0 | 2026-11-02 | m1 |
 | T-002 | 待办 | M1：电商演示数据模型与初始化脚本 | lenovo | 8.0 | 2026-11-02 | m1 |
 | T-003 | 待办 | M1：对话接口与消息持久化 | lenovo | 10.0 | 2026-11-04 | m1 |
 | T-004 | 待办 | M2：表结构检索与 NL2SQL 生成 | lenovo | 12.0 | 2026-11-09 | m2 |
@@ -70,6 +68,8 @@
 
 | 时间 | 事件 | 说明 |
 | --- | --- | --- |
+| 2026-10-24 03:54:01 | `gate.run` | phase=develop, scope=exit, ok=True, errors=0, warnings=1 |
+| 2026-10-24 03:54:01 | `task.update` | id=T-001, fields=status |
 | 2026-10-24 03:53:52 | `gate.run` | phase=develop, scope=exit, ok=True, errors=0, warnings=3 |
 | 2026-10-24 03:52:52 | `gate.run` | phase=develop, scope=exit, ok=True, errors=0, warnings=3 |
 | 2026-10-24 03:52:43 | `gate.run` | phase=develop, scope=exit, ok=True, errors=0, warnings=2 |
@@ -78,5 +78,3 @@
 | 2026-10-24 03:51:56 | `approve` | target=PLAN-001, by=Codex, role=reviewer, decision=approved |
 | 2026-10-24 03:51:48 | `gate.run` | phase=plan, scope=exit, ok=True, errors=0, warnings=0 |
 | 2026-10-24 03:51:48 | `sync` | added=0 |
-| 2026-10-24 03:50:53 | `task.add` | id=T-015, title=M5：演示录屏与面试深挖手册 |
-| 2026-10-24 03:50:52 | `task.add` | id=T-014, title=M5：README、架构图与 API 文档 |
