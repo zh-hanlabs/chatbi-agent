@@ -18,6 +18,10 @@ chatbi:
     # redis: 生产/联调;memory: 本地无 Redis 或测试时的进程内兜底
     type: ${CHATBI_CACHE_TYPE:redis}
     ttl-seconds: 300
+  rag:
+    top-k: 3
+    # 低于该相似度拒答,不编造内容
+    min-score: 0.2
 
 server:
   port: 8080

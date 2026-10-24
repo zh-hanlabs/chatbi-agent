@@ -1,16 +1,16 @@
 package com.example.chatbi.chat;
 
-import com.example.chatbi.agent.AgentClient;
-import com.example.chatbi.agent.AgentResult;
 import com.example.chatbi.agent.ToolCall;
 import com.example.chatbi.api.NotFoundException;
 import com.example.chatbi.audit.AuditService;
+import com.example.chatbi.rag.RagRouter;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @Service
@@ -21,14 +21,14 @@ public class ConversationService {
     }
 
     private final ConversationRepository repository;
-    private final AgentClient agentClient;
+    private final RagRouter ragRouter;
     private final ObjectMapper objectMapper;
     private final AuditService auditService;
 
-    public ConversationService(ConversationRepository repository, AgentClient agentClient, ObjectMapper objectMapper,
+    public ConversationService(ConversationRepository repository, RagRouter ragRouter, ObjectMapper objectMapper,
             AuditService auditService) {
         this.repository = repository;
-        this.agentClient = agentClient;
+        this.ragRouter = ragRouter;
         this.objectMapper = objectMapper;
         this.auditService = auditService;
     }
@@ -58,16 +58,22 @@ public class ConversationService {
         long userMessageId = repository.insertMessage(
                 new ChatMessage(null, conversation.id(), "USER", question, null, null));
 
-        AgentResult result = agentClient.complete(List.of());
-        String toolCallJson = serializeToolCall(result);
+        RagRouter.RoutedAnswer routed = ragRouter.route(question);
+        boolean requiresTool = RagRouter.ROUTE_NL2SQL.equals(routed.route()) && routed.sql() != null;
+        ToolCall toolCall = requiresTool
+                ? new ToolCall(UUID.randomUUID().toString(), "execute_sql", Map.of("sql", routed.sql().sql()))
+                : null;
+        String answer = requiresTool
+                ? "已生成查询 SQL,确认后执行: " + routed.sql().sql()
+                : routed.answer();
+        String toolCallJson = serializeToolCall(toolCall);
         long assistantMessageId = repository.insertMessage(
-                new ChatMessage(null, conversation.id(), "ASSISTANT", result.answer(), toolCallJson, null));
+                new ChatMessage(null, conversation.id(), "ASSISTANT", answer, toolCallJson, null));
 
         repository.touchUpdatedAt(conversation.id());
-        auditService.record(conversation.userId(), conversation.id(), AuditService.ACTION_CHAT, question, null,
-                true, null);
-        return new ChatReply(result.answer(), result.toolCall(), result.requiresTool(),
-                userMessageId, assistantMessageId);
+        auditService.record(conversation.userId(), conversation.id(), AuditService.ACTION_CHAT, question,
+                routed.sql() == null ? null : routed.sql().sql(), true, "route=" + routed.route());
+        return new ChatReply(answer, toolCall, requiresTool, userMessageId, assistantMessageId);
     }
 
     private void requireUser(long userId) {
@@ -86,12 +92,12 @@ public class ConversationService {
         return conversation;
     }
 
-    private String serializeToolCall(AgentResult result) {
-        if (!result.requiresTool() || result.toolCall() == null) {
+    private String serializeToolCall(ToolCall toolCall) {
+        if (toolCall == null) {
             return null;
         }
         try {
-            return objectMapper.writeValueAsString(result.toolCall());
+            return objectMapper.writeValueAsString(toolCall);
         } catch (JsonProcessingException e) {
             throw new IllegalStateException("工具调用序列化失败", e);
         }
