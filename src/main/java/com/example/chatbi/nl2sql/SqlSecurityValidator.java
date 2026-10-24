@@ -27,7 +27,7 @@ public class SqlSecurityValidator {
     private static final Pattern FORBIDDEN_VERB = Pattern.compile(
             "\\b(insert|update|delete|replace|merge|drop|alter|create|truncate|rename|grant|revoke|"
                     + "lock|unlock|call|execute|set|use|load|handler|kill|shutdown|outfile|dumpfile|"
-                    + "benchmark|sleep)\\b",
+                    + "benchmark|sleep|procedure)\\b",
             Pattern.CASE_INSENSITIVE);
 
     /** 投影通配符:SELECT *、o.* 与列表中的裸 * 都会绕过列级控制,一律拒绝 */
