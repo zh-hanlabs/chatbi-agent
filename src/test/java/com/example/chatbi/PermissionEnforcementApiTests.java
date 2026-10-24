@@ -32,8 +32,10 @@ class PermissionEnforcementApiTests {
     private JdbcTemplate jdbcTemplate;
 
     @BeforeEach
-    void cleanAudit() {
+    void cleanState() {
         jdbcTemplate.update("DELETE FROM audit_logs");
+        jdbcTemplate.update("DELETE FROM document_chunks");
+        jdbcTemplate.update("DELETE FROM documents");
     }
 
     @Test
@@ -90,6 +92,9 @@ class PermissionEnforcementApiTests {
 
     @Test
     void ragQueryKnowledgeRouteIgnoresPermissions() throws Exception {
+        // 语料自给自足,不依赖其他测试类的执行顺序
+        upload("业务口径说明", "GMV 的口径是已完成订单的金额总和。");
+
         // 口径文档全员可读,知识问题不受数据权限影响
         mockMvc.perform(post("/api/rag/query")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -157,6 +162,13 @@ class PermissionEnforcementApiTests {
                             .content("{\"userId\":3,\"question\":\"%s\"}".formatted(question)))
                     .andExpect(status().isOk());
         }
+    }
+
+    private void upload(String title, String content) throws Exception {
+        mockMvc.perform(post("/api/documents")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"title\":\"%s\",\"content\":\"%s\"}".formatted(title, content)))
+                .andExpect(status().isCreated());
     }
 
     private String createConversation(long userId) throws Exception {
