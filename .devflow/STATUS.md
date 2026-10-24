@@ -4,7 +4,7 @@
 
 - 项目：智能问数 Agent
 - 当前阶段：**develop**
-- 最近更新：2026-10-24T08:31:59
+- 最近更新：2026-10-24T08:34:21
 - 已完成阶段：intake、plan
 
 ## 当前阶段目标
@@ -36,8 +36,8 @@
 
 ## 任务与排期
 
-总数 15 ｜ 完成 14 ｜ 进行中 0 ｜ 阻塞 0 ｜ 待办 1 ｜ 逾期 0
-预估工时 144.0h，已完成 138.0h（95.8%）
+总数 15 ｜ 完成 15 ｜ 进行中 0 ｜ 阻塞 0 ｜ 待办 0 ｜ 逾期 0
+预估工时 144.0h，已完成 144.0h（100.0%）
 
 | ID | 状态 | 标题 | 负责人 | 估时(h) | 截止 | 标签 |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -55,7 +55,7 @@
 | T-012 | 完成 | M4：核心单元测试与异常场景测试 | lenovo | 12.0 | 2026-12-02 | m4 |
 | T-013 | 完成 | M5：Docker Compose 部署与环境隔离 | lenovo | 8.0 | 2026-12-04 | m5 |
 | T-014 | 完成 | M5：README、架构图与 API 文档 | lenovo | 8.0 | 2026-12-06 | m5 |
-| T-015 | 待办 | M5：演示录屏与面试深挖手册 | lenovo | 6.0 | 2026-12-07 | m5 |
+| T-015 | 完成 | M5：演示录屏与面试深挖手册 | lenovo | 6.0 | 2026-12-07 | m5 |
 
 ## 交付物清单
 
@@ -68,6 +68,9 @@
 
 | 时间 | 事件 | 说明 |
 | --- | --- | --- |
+| 2026-10-24 08:34:21 | `gate.run` | phase=develop, scope=exit, ok=True, errors=0, warnings=1 |
+| 2026-10-24 08:34:21 | `task.update` | id=T-015, fields=status |
+| 2026-10-24 08:32:19 | `task.update` | id=T-015, fields=status |
 | 2026-10-24 08:31:59 | `gate.run` | phase=develop, scope=exit, ok=True, errors=0, warnings=1 |
 | 2026-10-24 08:31:59 | `task.update` | id=T-014, fields=status |
 | 2026-10-24 08:30:00 | `task.update` | id=T-014, fields=status |
@@ -75,6 +78,3 @@
 | 2026-10-24 08:29:48 | `task.update` | id=T-013, fields=status |
 | 2026-10-24 08:08:19 | `task.update` | id=T-013, fields=status |
 | 2026-10-24 08:07:21 | `gate.run` | phase=develop, scope=exit, ok=True, errors=0, warnings=1 |
-| 2026-10-24 08:07:21 | `task.update` | id=T-012, fields=status |
-| 2026-10-24 08:03:44 | `task.update` | id=T-012, fields=status |
-| 2026-10-24 07:14:01 | `gate.run` | phase=develop, scope=exit, ok=True, errors=0, warnings=1 |
