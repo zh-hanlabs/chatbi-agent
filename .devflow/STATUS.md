@@ -4,7 +4,7 @@
 
 - 项目：智能问数 Agent
 - 当前阶段：**develop**
-- 最近更新：2026-10-24T05:40:04
+- 最近更新：2026-10-24T05:47:56
 - 已完成阶段：intake、plan
 
 ## 当前阶段目标
@@ -36,8 +36,8 @@
 
 ## 任务与排期
 
-总数 15 ｜ 完成 4 ｜ 进行中 0 ｜ 阻塞 0 ｜ 待办 11 ｜ 逾期 0
-预估工时 144.0h，已完成 40.0h（27.8%）
+总数 15 ｜ 完成 5 ｜ 进行中 0 ｜ 阻塞 0 ｜ 待办 10 ｜ 逾期 0
+预估工时 144.0h，已完成 52.0h（36.1%）
 
 | ID | 状态 | 标题 | 负责人 | 估时(h) | 截止 | 标签 |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -45,7 +45,7 @@
 | T-002 | 完成 | M1：电商演示数据模型与初始化脚本 | lenovo | 8.0 | 2026-11-02 | m1 |
 | T-003 | 完成 | M1：对话接口与消息持久化 | lenovo | 10.0 | 2026-11-04 | m1 |
 | T-004 | 完成 | M2：表结构检索与 NL2SQL 生成 | lenovo | 12.0 | 2026-11-09 | m2 |
-| T-005 | 待办 | M2：SQL 只读安全校验与执行确认 | lenovo | 12.0 | 2026-11-11 | m2 |
+| T-005 | 完成 | M2：SQL 只读安全校验与执行确认 | lenovo | 12.0 | 2026-11-11 | m2 |
 | T-006 | 待办 | M2：Redis 高频问答缓存与审计日志 | lenovo | 8.0 | 2026-11-13 | m2 |
 | T-007 | 待办 | M3：文档上传、切分与向量化管道 | lenovo | 10.0 | 2026-11-18 | m3 |
 | T-008 | 待办 | M3：RAG 检索、引用回答与拒答路由 | lenovo | 12.0 | 2026-11-20 | m3 |
@@ -68,6 +68,9 @@
 
 | 时间 | 事件 | 说明 |
 | --- | --- | --- |
+| 2026-10-24 05:47:56 | `gate.run` | phase=develop, scope=exit, ok=True, errors=0, warnings=1 |
+| 2026-10-24 05:47:55 | `task.update` | id=T-005, fields=status |
+| 2026-10-24 05:46:02 | `task.update` | id=T-005, fields=status |
 | 2026-10-24 05:40:04 | `gate.run` | phase=develop, scope=exit, ok=True, errors=0, warnings=1 |
 | 2026-10-24 05:40:03 | `task.update` | id=T-004, fields=status |
 | 2026-10-24 05:35:47 | `task.update` | id=T-004, fields=status |
@@ -75,6 +78,3 @@
 | 2026-10-24 05:29:50 | `task.update` | id=T-003, fields=status |
 | 2026-10-24 05:25:29 | `task.update` | id=T-003, fields=status |
 | 2026-10-24 05:22:47 | `gate.run` | phase=develop, scope=exit, ok=True, errors=0, warnings=1 |
-| 2026-10-24 05:22:45 | `task.update` | id=T-002, fields=status |
-| 2026-10-24 04:19:25 | `task.update` | id=T-002, fields=status |
-| 2026-10-24 04:05:05 | `gate.run` | phase=develop, scope=exit, ok=True, errors=0, warnings=1 |
