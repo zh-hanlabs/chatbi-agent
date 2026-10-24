@@ -90,3 +90,8 @@
 {"ts": "2026-10-24T09:08:42", "event": "doc.create", "id": "RELEASE-001", "kind": "releaseplan", "path": "docs/release/RELEASE-001-req-001-v0-1-0.md"}
 {"ts": "2026-10-24T09:09:48", "event": "doc.update", "id": "RELEASE-001", "fields": "status"}
 {"ts": "2026-10-24T09:09:48", "event": "gate.run", "phase": "release", "scope": "exit", "ok": false, "errors": 2, "warnings": 1}
+{"ts": "2026-10-24T09:10:01", "event": "gate.run", "phase": "release", "scope": "exit", "ok": false, "errors": 1, "warnings": 1}
+{"ts": "2026-10-24T09:10:05", "event": "gate.run", "phase": "release", "scope": "exit", "ok": false, "errors": 1, "warnings": 1}
+{"ts": "2026-10-24T09:10:06", "event": "approve", "target": "RELEASE-001", "by": "lenovo", "role": "reviewer", "decision": "approved"}
+{"ts": "2026-10-24T09:10:17", "event": "ci.record", "status": "success", "updated_at": "2026-10-24T09:10:17", "run_id": "local-mvnw-103"}
+{"ts": "2026-10-24T09:10:17", "event": "gate.run", "phase": "release", "scope": "exit", "ok": true, "errors": 0, "warnings": 0}

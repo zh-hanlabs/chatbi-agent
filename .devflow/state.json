@@ -7,7 +7,7 @@
     "repo": ""
   },
   "created_at": "2026-10-24T03:47:45",
-  "updated_at": "2026-10-24T09:09:48",
+  "updated_at": "2026-10-24T09:10:17",
   "current_phase": "release",
   "phases": {
     "intake": {
@@ -71,10 +71,10 @@
       "exited_at": null,
       "attempts": 0,
       "last_check": {
-        "at": "2026-10-24T09:09:48",
-        "ok": false,
-        "errors": 2,
-        "warnings": 1
+        "at": "2026-10-24T09:10:17",
+        "ok": true,
+        "errors": 0,
+        "warnings": 0
       }
     }
   },
@@ -122,7 +122,7 @@
       "title": "REQ-001 v0.1.0 首个演示版发布",
       "path": "docs/release/RELEASE-001-req-001-v0-1-0.md",
       "created_at": "2026-10-24T09:08:42",
-      "updated_at": "2026-10-24T09:09:48"
+      "updated_at": "2026-10-24T09:10:06"
     }
   ],
   "tasks": [
@@ -459,6 +459,14 @@
       "phase": "test",
       "decision": "approved",
       "at": "2026-10-24T09:08:35"
+    },
+    {
+      "target": "RELEASE-001",
+      "by": "lenovo",
+      "role": "reviewer",
+      "phase": "release",
+      "decision": "approved",
+      "at": "2026-10-24T09:10:06"
     }
   ],
   "history": [
@@ -500,9 +508,9 @@
     "phase": "release",
     "scope": "exit",
     "mode": "graded",
-    "ok": false,
-    "errors": 2,
-    "warnings": 1,
+    "ok": true,
+    "errors": 0,
+    "warnings": 0,
     "infos": 0,
     "rules": 11
   }

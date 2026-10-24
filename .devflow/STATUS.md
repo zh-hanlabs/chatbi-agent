@@ -4,7 +4,7 @@
 
 - 项目：智能问数 Agent
 - 当前阶段：**release**
-- 最近更新：2026-10-24T09:09:48
+- 最近更新：2026-10-24T09:10:17
 - 已完成阶段：intake、plan、develop、review、test
 
 ## 当前阶段目标
@@ -24,17 +24,13 @@
 | 4 | [x] develop | 已完成 开发执行 | 2026-10-24T03:51 | 2026-10-24T09:07 | 通过 (0E/2W) |
 | 5 | [x] review | 已完成 代码评审 | 2026-10-24T09:07 | 2026-10-24T09:07 | - |
 | 6 | [x] test | 已完成 测试验证 | 2026-10-24T09:07 | 2026-10-24T09:08 | 通过 (0E/2W) |
-| 7 | [~] release | 进行中 发布部署 | 2026-10-24T09:08 | - | 未通过 (2E/1W) |
+| 7 | [~] release | 进行中 发布部署 | 2026-10-24T09:08 | - | 通过 (0E/0W) |
 
 ## 最近一次门禁结果
 
-**结论**：未通过（错误 2 / 警告 1 / 提示 0，运行规则 11 条，模式 `graded`）
+**结论**：通过（错误 0 / 警告 0 / 提示 0，运行规则 11 条，模式 `graded`）
 
-| 级别 | 规则 | 问题 | 位置 | 修复建议 |
-| --- | --- | --- | --- | --- |
-| 错误 | `doc.approval` | docs/release/RELEASE-001-req-001-v0-1-0.md 批准人数不足：0/1 | docs/release/RELEASE-001-req-001-v0-1-0.md | 需要至少 1 名评审人，`devflow approve --target RELEASE-001 --by <姓名>` |
-| 错误 | `release.version` | 版本 v0.1.0 对应的 tag v0.1.0 不存在 | docs/release/RELEASE-001-req-001-v0-1-0.md | `git tag v0.1.0 && git push --tags` |
-| 警告 | `ci.last_run` | 没有流水线结果记录（.devflow/ci-status.json） | - | CI 末尾执行 `devflow ci record --result success` 写入该文件 |
+所有规则均无异常。
 
 ## 任务与排期
 
@@ -67,19 +63,19 @@
 | PLAN-001 | plan | 智能问数 Agent 六周交付计划 | `docs/plan/PLAN-001-six-week-mvp.md` | 2026-10-24T03:51 |
 | REVIEW-001 | review | REQ-001 全量交付评审 | `docs/review/REVIEW-001-req-001.md` | 2026-10-24T08:48 |
 | TEST-001 | testplan | REQ-001 功能与异常测试计划 | `docs/test/TEST-001-req-001.md` | 2026-10-24T09:08 |
-| RELEASE-001 | releaseplan | REQ-001 v0.1.0 首个演示版发布 | `docs/release/RELEASE-001-req-001-v0-1-0.md` | 2026-10-24T09:09 |
+| RELEASE-001 | releaseplan | REQ-001 v0.1.0 首个演示版发布 | `docs/release/RELEASE-001-req-001-v0-1-0.md` | 2026-10-24T09:10 |
 
 ## 最近事件
 
 | 时间 | 事件 | 说明 |
 | --- | --- | --- |
+| 2026-10-24 09:10:17 | `gate.run` | phase=release, scope=exit, ok=True, errors=0, warnings=0 |
+| 2026-10-24 09:10:17 | `ci.record` | status=success, updated_at=2026-10-24T09:10:17, run_id=local-mvnw-103 |
+| 2026-10-24 09:10:06 | `approve` | target=RELEASE-001, by=lenovo, role=reviewer, decision=approved |
+| 2026-10-24 09:10:05 | `gate.run` | phase=release, scope=exit, ok=False, errors=1, warnings=1 |
+| 2026-10-24 09:10:01 | `gate.run` | phase=release, scope=exit, ok=False, errors=1, warnings=1 |
 | 2026-10-24 09:09:48 | `gate.run` | phase=release, scope=exit, ok=False, errors=2, warnings=1 |
 | 2026-10-24 09:09:48 | `doc.update` | id=RELEASE-001, fields=status |
 | 2026-10-24 09:08:42 | `doc.create` | id=RELEASE-001, kind=releaseplan, path=docs/release/RELEASE-001-req-001-v0-1-0.md |
 | 2026-10-24 09:08:36 | `phase.enter` | target=release, forced=False |
 | 2026-10-24 09:08:35 | `approve` | target=TEST-001, by=ZCode, role=qa, decision=approved |
-| 2026-10-24 09:08:35 | `gate.run` | phase=test, scope=exit, ok=True, errors=0, warnings=2 |
-| 2026-10-24 09:07:23 | `phase.enter` | target=test, forced=False |
-| 2026-10-24 09:07:23 | `phase.enter` | target=review, forced=False |
-| 2026-10-24 09:07:07 | `phase.enter.blocked` | target=test, errors=1 |
-| 2026-10-24 09:07:07 | `phase.enter` | target=review, forced=False |
