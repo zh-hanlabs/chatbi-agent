@@ -1,9 +1,12 @@
 package com.example.chatbi.agent;
 
+import org.springframework.stereotype.Component;
+
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+@Component
 public class MockAgentClient implements AgentClient {
     @Override
     public AgentResult complete(List<ToolCall> requestedTools) {
