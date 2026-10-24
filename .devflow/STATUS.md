@@ -4,7 +4,7 @@
 
 - 项目：智能问数 Agent
 - 当前阶段：**develop**
-- 最近更新：2026-10-24T08:34:21
+- 最近更新：2026-10-24T08:48:51
 - 已完成阶段：intake、plan
 
 ## 当前阶段目标
@@ -21,18 +21,14 @@
 | --- | --- | --- | --- | --- | --- |
 | 1 | [x] intake | 已完成 需求立项 | 2026-10-24T03:47 | 2026-10-24T03:50 | 通过 (0E/1W) |
 | 3 | [x] plan | 已完成 排期计划 | 2026-10-24T03:50 | 2026-10-24T03:51 | 通过 (0E/0W) |
-| 4 | [~] develop | 进行中 开发执行 | 2026-10-24T03:51 | - | 通过 (0E/1W) |
+| 4 | [~] develop | 进行中 开发执行 | 2026-10-24T03:51 | - | 通过 (0E/2W) |
 | 5 | [ ] review | 未开始 代码评审 | - | - | - |
 | 6 | [ ] test | 未开始 测试验证 | - | - | - |
 | 7 | [ ] release | 未开始 发布部署 | - | - | - |
 
 ## 最近一次门禁结果
 
-**结论**：通过（错误 0 / 警告 1 / 提示 0，运行规则 7 条，模式 `warn`）
-
-| 级别 | 规则 | 问题 | 位置 | 修复建议 |
-| --- | --- | --- | --- | --- |
-| 警告 | `repo.tree_clean` | 有 2 处未提交改动，例如：M .devflow/log.jsonl | - | `git add -A && git commit -m "chore: ..."`；若某文件是生成产物，可加入 devflow.yaml#repo.clean_ignore |
+尚未运行过门禁。执行：`devflow gate`
 
 ## 任务与排期
 
@@ -63,18 +59,19 @@
 | --- | --- | --- | --- | --- |
 | REQ-001 | requirement | 智能问数 Agent 实习作品项目 | `docs/requirements/REQ-001-chatbi-agent.md` | 2026-10-24T03:50 |
 | PLAN-001 | plan | 智能问数 Agent 六周交付计划 | `docs/plan/PLAN-001-six-week-mvp.md` | 2026-10-24T03:51 |
+| REVIEW-001 | review | REQ-001 全量交付评审 | `docs/review/REVIEW-001-req-001.md` | 2026-10-24T08:48 |
 
 ## 最近事件
 
 | 时间 | 事件 | 说明 |
 | --- | --- | --- |
+| 2026-10-24 08:48:51 | `approve` | target=REVIEW-001, by=ZCode, role=reviewer, decision=approved |
+| 2026-10-24 08:48:51 | `doc.update` | id=REVIEW-001, fields=comments_resolved |
+| 2026-10-24 08:48:51 | `gate.run` | phase=develop, scope=exit, ok=True, errors=0, warnings=2 |
+| 2026-10-24 08:48:07 | `doc.create` | id=REVIEW-001, kind=review, path=docs/review/REVIEW-001-req-001.md |
 | 2026-10-24 08:34:21 | `gate.run` | phase=develop, scope=exit, ok=True, errors=0, warnings=1 |
 | 2026-10-24 08:34:21 | `task.update` | id=T-015, fields=status |
 | 2026-10-24 08:32:19 | `task.update` | id=T-015, fields=status |
 | 2026-10-24 08:31:59 | `gate.run` | phase=develop, scope=exit, ok=True, errors=0, warnings=1 |
 | 2026-10-24 08:31:59 | `task.update` | id=T-014, fields=status |
 | 2026-10-24 08:30:00 | `task.update` | id=T-014, fields=status |
-| 2026-10-24 08:29:48 | `gate.run` | phase=develop, scope=exit, ok=True, errors=0, warnings=1 |
-| 2026-10-24 08:29:48 | `task.update` | id=T-013, fields=status |
-| 2026-10-24 08:08:19 | `task.update` | id=T-013, fields=status |
-| 2026-10-24 08:07:21 | `gate.run` | phase=develop, scope=exit, ok=True, errors=0, warnings=1 |

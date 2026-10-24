@@ -73,3 +73,7 @@
 {"ts": "2026-10-24T08:32:19", "event": "task.update", "id": "T-015", "fields": "status"}
 {"ts": "2026-10-24T08:34:21", "event": "task.update", "id": "T-015", "fields": "status"}
 {"ts": "2026-10-24T08:34:21", "event": "gate.run", "phase": "develop", "scope": "exit", "ok": true, "errors": 0, "warnings": 1}
+{"ts": "2026-10-24T08:48:07", "event": "doc.create", "id": "REVIEW-001", "kind": "review", "path": "docs/review/REVIEW-001-req-001.md"}
+{"ts": "2026-10-24T08:48:51", "event": "gate.run", "phase": "develop", "scope": "exit", "ok": true, "errors": 0, "warnings": 2}
+{"ts": "2026-10-24T08:48:51", "event": "doc.update", "id": "REVIEW-001", "fields": "comments_resolved"}
+{"ts": "2026-10-24T08:48:51", "event": "approve", "target": "REVIEW-001", "by": "ZCode", "role": "reviewer", "decision": "approved"}
