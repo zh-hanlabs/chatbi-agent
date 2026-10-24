@@ -1,0 +1,47 @@
+# devflow 内置基线：strict（强合规 / 线上关键系统）
+#
+# 在 standard 之上做加法：
+#   - 全局 strict：任何一条 warn 都会被提升为 error（error 级不修复就不能合并）
+#   - 覆盖率与用例数、提交与分支规范等原先 warn 的项全部显式升级
+#   - 提高覆盖率和评审人数门槛
+
+name: strict
+description: 强合规模式，warn 一律升为 error
+extends: standard
+
+config:
+  gates:
+    mode: strict
+  test:
+    min_coverage: 80
+    min_cases: 5
+  review:
+    min_reviewers: 2
+
+rules:
+  - id: test.coverage
+    severity: error
+  - id: test.cases
+    severity: error
+  - id: repo.commit
+    severity: error
+  - id: repo.branch
+    severity: error
+  - id: repo.tree_clean
+    severity: error
+  - id: repo.readme
+    severity: error
+  - id: ci.config
+    severity: error
+  - id: ci.last_run
+    severity: error
+  - id: doc.index
+    severity: error
+  - id: task.schedule
+    severity: error
+  - id: review.checklist
+    severity: error
+
+# 注意：strict 模式下「未配置」不等于「不检查」。
+# 若某条规则确实不适用，请在项目 devflow.yaml 里显式 `enabled: false`，
+# 这样后续审计时能从契约里看出是「有意豁免」而不是「漏了」。

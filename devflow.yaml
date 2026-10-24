@@ -1,0 +1,71 @@
+# devflow 项目契约
+#
+# 基线：minimal
+#   extends 可写单个内置基线名（standard / minimal / strict / skeleton），
+#   也可以写成列表做多继承：extends: [standard, .devflow/profiles/团队基线.yaml]
+#   把同名文件放进 .devflow/profiles/ 即可覆盖内置基线。
+#
+# 定制入口（按需取消注释并改写，写完用 `devflow contract lint` 自检）：
+#
+# phases:                       # 阶段增删改
+#   - id: security-review       # 新增自定义阶段
+#     seq: 4.5                  # seq 决定顺序
+#     name: 安全评审
+#     goal: 威胁建模与整改闭环
+#     artifacts: [secreview]
+#     entry: [phase.prev_completed, phase.entry_docs]
+#     exit: [doc.exists, doc.frontmatter, doc.sections]
+#   - id: design                # 裁掉某个阶段
+#     enabled: false
+#
+# artifacts:                    # 自定义产出物类型（模板可由引擎自动生成）
+#   - kind: secreview
+#     phase: security-review
+#     dir: docs/security
+#     prefix: SEC
+#     label: 安全评审记录
+#     required_fields: [id, title, status, owner]
+#     required_sections: [威胁建模, 整改措施, 评审结论]
+#
+# rules:                        # 规则：引用内置并改级别/参数，或用原语写新的
+#   - id: repo.commit
+#     severity: error
+#   - id: test.coverage
+#     params:
+#       min: 85
+#   - id: repo.large_files
+#     enabled: false
+#   - id: custom.no-hardcoded-secret
+#     title: 源码不得出现硬编码口令
+#     severity: error
+#     checks:
+#       - type: file_not_contains
+#         glob: "src/**/*.java"
+#         pattern: "(?i)(password|secret)\\s*=\\s*\"[^\"]{4,}\""
+#         message: 源码中存在硬编码口令
+#         hint: 改为配置中心或环境变量注入
+#
+# config:                       # 阈值与模式（覆盖基线）
+#   test:
+#     min_coverage: 85
+#   gates:
+#     mode: graded
+#
+# 常用命令：
+#   devflow contract show        查看生效契约（阶段 / 产出物 / 规则来源）
+#   devflow contract lint        契约自检
+#   devflow contract export      导出为可复用的团队基线
+#   devflow contract primitives  查看可用的检查原语
+#   devflow profile list         查看内置基线
+
+extends: minimal
+
+project:
+  name: 智能问数 Agent
+  slug: 
+  owner: lenovo
+  repo: 
+
+platform:
+  ci: github
+  hosting: github

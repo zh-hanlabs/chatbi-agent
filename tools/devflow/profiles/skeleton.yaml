@@ -1,0 +1,147 @@
+# devflow 内置基线：skeleton（纯框架）
+#
+# 定位：**只有框架，没有实现**。适合「先立流程骨架，规范后补」的团队。
+#   - 八个阶段与产出物类型齐全（名称、目录、编号前缀都给好了）
+#   - 任何阶段都不绑定检查规则（exit: []），init 后不会拦住任何人
+#   - 产出物只用最小字段集，模板由引擎按契约自动生成（template 留空）
+#   - gates.mode 为 warn，即使后续绑了规则也只提示不阻断
+#
+# 用法：
+#   devflow init --profile skeleton
+#   然后在 devflow.yaml 的 phases.<阶段>.exit 里逐条挂上你真正需要的规则，
+#   或直接用 rules.checks（检查原语）写项目专属规则。
+
+name: skeleton
+description: 只保留骨架，检查规则与字段要求由项目按需补齐
+
+config:
+  gates:
+    mode: warn
+  test:
+    min_coverage: 0
+    min_cases: 0
+
+phases:
+  - id: intake
+    seq: 1
+    name: 需求立项
+    goal: 把模糊诉求收敛成可验收、可排优先级、有明确负责人的需求条目
+    artifacts: [requirement]
+    entry: []
+    exit: []
+  - id: design
+    seq: 2
+    name: 方案设计
+    goal: 给出可落地的技术方案与关键架构决策
+    artifacts: [design, adr]
+    entry: []
+    exit: []
+  - id: plan
+    seq: 3
+    name: 排期计划
+    goal: WBS 拆解与里程碑
+    artifacts: [plan]
+    entry: []
+    exit: []
+  - id: develop
+    seq: 4
+    name: 开发执行
+    goal: 按分支与提交规范完成编码与自测
+    artifacts: []
+    entry: []
+    exit: []
+  - id: review
+    seq: 5
+    name: 代码评审
+    goal: 结构化评审与意见闭环
+    artifacts: [review]
+    entry: []
+    exit: []
+  - id: test
+    seq: 6
+    name: 测试验证
+    goal: 用例、覆盖率与缺陷清零
+    artifacts: [testplan]
+    entry: []
+    exit: []
+  - id: release
+    seq: 7
+    name: 发布部署
+    goal: 灰度上线与回滚就绪
+    artifacts: [releaseplan]
+    entry: []
+    exit: []
+  - id: retro
+    seq: 8
+    name: 复盘归档
+    goal: 量化复盘与改进回流
+    artifacts: [retro]
+    entry: []
+    exit: []
+
+artifacts:
+  # template 留空 → `devflow new` 会按下面的字段与小节目动生成骨架文档
+  - kind: requirement
+    phase: intake
+    dir_key: requirements
+    prefix: REQ
+    label: 需求说明书
+    required_fields: [id, title, status, owner]
+    required_sections: [背景与问题, 验收标准 (AC)]
+
+  - kind: design
+    phase: design
+    dir_key: design
+    prefix: DESIGN
+    label: 技术方案设计
+    required_fields: [id, title, status, owner]
+    required_sections: [总体方案, 接口契约]
+
+  - kind: adr
+    phase: design
+    dir_key: adr
+    prefix: ADR
+    label: 架构决策记录
+    optional: true
+    required_fields: [id, title, status, owner]
+    required_sections: [背景, 决策]
+
+  - kind: plan
+    phase: plan
+    dir_key: plan
+    prefix: PLAN
+    label: 排期计划
+    required_fields: [id, title, status, owner]
+    required_sections: [迭代目标, WBS 任务清单]
+
+  - kind: review
+    phase: review
+    dir_key: review
+    prefix: REVIEW
+    label: 代码评审记录
+    required_fields: [id, title, status, owner]
+    required_sections: [变更清单, 评审 checklist]
+
+  - kind: testplan
+    phase: test
+    dir_key: test
+    prefix: TEST
+    label: 测试计划
+    required_fields: [id, title, status, owner]
+    required_sections: [测试范围, 功能用例]
+
+  - kind: releaseplan
+    phase: release
+    dir_key: release
+    prefix: RELEASE
+    label: 发布计划
+    required_fields: [id, title, status, owner]
+    required_sections: [发布内容, 回滚方案]
+
+  - kind: retro
+    phase: retro
+    dir_key: retro
+    prefix: RETRO
+    label: 复盘报告
+    required_fields: [id, title, status, owner]
+    required_sections: [指标回顾, 待改进项]

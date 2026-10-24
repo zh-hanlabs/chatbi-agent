@@ -1,0 +1,41 @@
+# devflow 内置基线：minimal（小团队 / 快节奏）
+#
+# 在 standard 之上做减法：
+#   - 去掉 design 与 retro 两个阶段（方案写进需求文档，复盘可选）
+#   - ADR 转为可选
+#   - 全局模式为 warn：所有问题只提示不阻断（想拦的单独在 rules 里改 error）
+#   - 关掉与大仓库相关的几条（doc.index、repo.large_files）
+
+name: minimal
+description: 六阶段轻量流程，问题只提示不阻断
+extends: standard
+
+config:
+  gates:
+    mode: warn
+    phase_modes:
+      release: graded
+
+phases:
+  - id: design
+    enabled: false
+  - id: retro
+    enabled: false
+
+artifacts:
+  - kind: adr
+    optional: true
+
+rules:
+  - id: doc.index
+    enabled: false
+  - id: repo.large_files
+    enabled: false
+  - id: design.contract
+    enabled: false
+  - id: retro.metrics
+    enabled: false
+  - id: retro.actions
+    enabled: false
+  - id: repo.secrets
+    severity: error      # 安全问题即使轻量模式也必须拦

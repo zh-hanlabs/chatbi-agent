@@ -1,0 +1,61 @@
+# devflow 流水线（GitLab CI）
+# 由 `devflow ci emit --platform gitlab` 生成。
+# 与本地一致的命令入口：{{PYTHON}} {{ENTRY}}
+
+stages:
+  - gate
+  - release
+
+variables:
+  DEVFLOW_ENTRY: "{{ENTRY}}"
+  DEVFLOW_PY: "{{PYTHON}}"
+
+default:
+  image: python:3.11-slim
+  before_script:
+    - python3 --version
+
+devflow-check:
+  stage: gate
+  script:
+    - python3 "$DEVFLOW_ENTRY" sync
+    - python3 "$DEVFLOW_ENTRY" check --json | tee devflow-check.json || true
+    - python3 "$DEVFLOW_ENTRY" gate
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == "{{BRANCH}}"
+    - if: $CI_COMMIT_BRANCH == "{{DEVELOP}}"
+  artifacts:
+    when: always
+    paths:
+      - devflow-check.json
+    expire_in: 1 week
+
+ci-record:
+  stage: gate
+  needs: ["devflow-check"]
+  when: always
+  script:
+    - |
+      if [ "$CI_JOB_STATUS" = "success" ]; then
+        python3 "$DEVFLOW_ENTRY" ci record --result success --run-id "$CI_PIPELINE_ID" --set commit="$CI_COMMIT_SHA"
+      else
+        python3 "$DEVFLOW_ENTRY" ci record --result failed --run-id "$CI_PIPELINE_ID"
+      fi
+
+release-gate:
+  stage: release
+  script:
+    - python3 "$DEVFLOW_ENTRY" gate --phase release --mode strict
+  rules:
+    - if: $CI_COMMIT_TAG
+  artifacts:
+    when: always
+    paths:
+      - devflow-check.json
+
+# Merge Request 设置建议（Settings → Merge requests）：
+#   - Merge checks：Pipelines must succeed
+#   - Merge checks：All threads must be resolved
+#   - Merge checks：All approvals obtained（≥ 1）
+#   - Push rules：Commit message 正则 ^(feat|fix|docs|refactor|perf|test|chore|ci|build|revert)(\(.+\))?: .+

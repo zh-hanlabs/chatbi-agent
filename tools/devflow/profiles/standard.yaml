@@ -1,0 +1,203 @@
+# devflow 内置基线：standard
+#
+# 定位：**一份可以直接用、也可以整体换掉的内置实现**。
+# 阶段与产出物在这里完整声明（可复制出来改）；
+# 检查规则不在此声明 —— 未声明的规则自动取内置规则库（37 条）的默认级别。
+# 想改任何一条，只需在项目 devflow.yaml 里写同名 rules 条目即可覆盖。
+#
+# 覆盖顺序：standard.yaml < 团队 profile < 项目 devflow.yaml
+# 裁剪方式：
+#   phases:  - {id: design, enabled: false}      去掉某个阶段
+#   artifacts: - {kind: adr, optional: true}     某类型不再强制
+#   rules:   - {id: repo.commit, severity: error}  改级别
+#            - {id: xxx, enabled: false}          停用
+#            - {id: 自定义, checks: [...]}        新增（见 primitives）
+
+name: standard
+description: 八阶段完整流程 + 内置规则库默认级别
+
+config:
+  gates:
+    mode: graded
+    phase_modes:
+      release: strict
+      review: graded
+
+phases:
+  - id: intake
+    seq: 1
+    name: 需求立项
+    goal: 把模糊诉求收敛成可验收、可排优先级、有明确负责人的需求条目
+    artifacts: [requirement]
+    entry: []
+    exit: [doc.exists, doc.frontmatter, doc.sections, doc.placeholder,
+           doc.approval, doc.review_record, doc.index]
+    next_actions:
+      - 补齐缺失的需求字段后再次运行 `devflow check`
+      - 运行 `devflow phase enter --to design` 进入方案设计
+
+  - id: design
+    seq: 2
+    name: 方案设计
+    goal: 给出可落地的技术方案、关键架构决策与接口/数据契约，并完成设计评审
+    artifacts: [design, adr]
+    entry: [phase.prev_completed, phase.entry_docs]
+    exit: [doc.exists, doc.frontmatter, doc.sections, doc.placeholder,
+           doc.approval, doc.review_record, design.contract, doc.index]
+    next_actions:
+      - 用 `devflow new adr --title "为何选择 X 而非 Y"` 固化关键取舍
+      - 运行 `devflow phase enter --to plan` 进入排期
+
+  - id: plan
+    seq: 3
+    name: 排期计划
+    goal: 把方案拆成有负责人、有估时、有依赖与里程碑的任务（WBS），形成可跟踪的计划
+    artifacts: [plan]
+    entry: [phase.prev_completed, phase.entry_docs, task.planned]
+    exit: [doc.exists, doc.frontmatter, doc.sections, doc.placeholder,
+           task.planned, task.schedule, task.ownership, plan.milestones, doc.index]
+    next_actions:
+      - 用 `devflow task add` 补齐遗漏任务及其 owner/估时/截止日
+      - 运行 `devflow phase enter --to develop` 开始开发
+
+  - id: develop
+    seq: 4
+    name: 开发执行
+    goal: 按分支与提交规范完成编码、自测和 PR 提交，满足合入门禁
+    artifacts: []
+    entry: [phase.prev_completed, task.planned, repo.branch]
+    exit: [repo.branch, repo.commit, repo.secrets, repo.large_files,
+           repo.readme, repo.tree_clean, ci.config, task.in_progress]
+    next_actions:
+      - 创建符合规范的分支与 PR：`feature/<需求号>-<简述>`
+      - 运行 `devflow new review --title "XXX 代码评审"` 进入评审阶段
+
+  - id: review
+    seq: 5
+    name: 代码评审
+    goal: 通过结构化 checklist 完成代码评审，确保所有意见闭环并有足够 approve
+    artifacts: [review]
+    entry: [phase.prev_completed, phase.entry_docs]
+    exit: [doc.exists, doc.frontmatter, doc.sections, doc.placeholder,
+           review.approvals, review.checklist, review.comments_resolved, doc.index]
+    next_actions:
+      - 让评审人执行 `devflow approve --target <评审单号> --by <姓名>`
+      - 运行 `devflow phase enter --to test` 进入测试验证
+
+  - id: test
+    seq: 6
+    name: 测试验证
+    goal: 以测试计划驱动验证，覆盖功能/边界/异常/性能，缺陷分级清零后方可发布
+    artifacts: [testplan]
+    entry: [phase.prev_completed, phase.entry_docs]
+    exit: [doc.exists, doc.frontmatter, doc.sections, doc.placeholder,
+           test.cases, test.results, test.coverage, test.bug_triage,
+           ci.last_run, doc.index]
+    next_actions:
+      - 补齐 P0/P1 用例执行结果，跑出覆盖率并写入 .devflow/coverage.json
+      - 运行 `devflow phase enter --to release` 进入发布
+
+  - id: release
+    seq: 7
+    name: 发布部署
+    goal: 按发布计划灰度上线，流水线全绿、可观测到位、回滚方案可用
+    artifacts: [releaseplan]
+    entry: [phase.prev_completed, phase.entry_docs, task.blocking_done]
+    exit: [doc.exists, doc.frontmatter, doc.sections, doc.placeholder,
+           doc.approval, release.changelog, release.version, release.rollback,
+           release.env_ready, ci.last_run, task.blocking_done, doc.index]
+    next_actions:
+      - 更新 CHANGELOG.md 并打 tag：`git tag vX.Y.Z`
+      - 运行 `devflow phase enter --to retro` 进入复盘
+
+  - id: retro
+    seq: 8
+    name: 复盘归档
+    goal: 用数据复盘目标达成情况，沉淀改进项并回流到需求池
+    artifacts: [retro]
+    entry: [phase.prev_completed, phase.entry_docs]
+    exit: [doc.exists, doc.frontmatter, doc.sections, doc.placeholder,
+           retro.metrics, retro.actions, doc.index]
+    next_actions:
+      - 把改进项注册成任务：`devflow task add --title "..." --tag retro`
+      - 运行 `devflow archive` 归档本次迭代
+
+artifacts:
+  - kind: requirement
+    phase: intake
+    dir_key: requirements
+    prefix: REQ
+    template: requirement.md
+    label: 需求说明书
+    required_fields: [id, title, status, priority, owner, created, source]
+    required_sections: [背景与问题, 目标与非目标, 用户故事, 验收标准 (AC),
+                        范围与依赖, 风险与对策, 优先级说明, 评审记录]
+
+  - kind: design
+    phase: design
+    dir_key: design
+    prefix: DESIGN
+    template: design.md
+    label: 技术方案设计
+    required_fields: [id, title, status, owner, created, related_requirement]
+    required_sections: [总体方案, 详细设计, 接口契约, 数据模型, 容量与性能,
+                        异常处理与降级, 安全与合规, 可观测性, 测试策略, 评审记录]
+
+  - kind: adr
+    phase: design
+    dir_key: adr
+    prefix: ADR
+    template: adr.md
+    label: 架构决策记录
+    optional: true
+    required_fields: [id, title, status, decision_date, owner]
+    required_sections: [背景, 决策, 候选方案对比, 影响, 遵循性检查]
+
+  - kind: plan
+    phase: plan
+    dir_key: plan
+    prefix: PLAN
+    template: plan.md
+    label: 排期计划
+    required_fields: [id, title, status, start_date, target_date, owner]
+    required_sections: [迭代目标, WBS 任务清单, 里程碑, 人力资源与负载,
+                        关键依赖, 风险与缓冲, 计划评审]
+
+  - kind: review
+    phase: review
+    dir_key: review
+    prefix: REVIEW
+    template: review.md
+    label: 代码评审记录
+    required_fields: [id, title, status, owner, reviewers, created, comments_resolved]
+    required_sections: [变更清单, 评审 checklist, 评审意见, 遗留问题与跟进]
+
+  - kind: testplan
+    phase: test
+    dir_key: test
+    prefix: TEST
+    template: test-plan.md
+    label: 测试计划
+    required_fields: [id, title, status, owner, created, env]
+    required_sections: [测试范围, 测试环境, 功能用例, 边界与异常用例, 性能与稳定性,
+                        回归策略, 出口准则, 执行结果, 缺陷跟踪]
+
+  - kind: releaseplan
+    phase: release
+    dir_key: release
+    prefix: RELEASE
+    template: release-plan.md
+    label: 发布计划
+    required_fields: [id, title, status, owner, version, release_date,
+                      rollback_ready, env_ready]
+    required_sections: [发布内容, 前置检查, 发布步骤, 灰度与观测, 回滚方案,
+                        发布后验证, 发布记录]
+
+  - kind: retro
+    phase: retro
+    dir_key: retro
+    prefix: RETRO
+    template: retro.md
+    label: 复盘报告
+    required_fields: [id, title, status, owner, retro_date, iteration]
+    required_sections: [目标达成情况, 指标回顾, 做得好的地方, 待改进项, 结论与后续动作]

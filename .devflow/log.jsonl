@@ -1,0 +1,28 @@
+{"ts": "2026-10-24T03:47:45", "event": "init", "project": "智能问数 Agent", "platform": "github", "profile": "minimal"}
+{"ts": "2026-10-24T03:48:05", "event": "doc.create", "id": "REQ-001", "kind": "requirement", "path": "docs/requirements/REQ-001-chatbi-agent.md"}
+{"ts": "2026-10-24T03:50:10", "event": "gate.run", "phase": "intake", "scope": "exit", "ok": true, "errors": 0, "warnings": 1}
+{"ts": "2026-10-24T03:50:29", "event": "approve", "target": "REQ-001", "by": "Codex", "role": "reviewer", "decision": "approved"}
+{"ts": "2026-10-24T03:50:29", "event": "phase.enter", "target": "plan", "forced": false}
+{"ts": "2026-10-24T03:50:37", "event": "doc.create", "id": "PLAN-001", "kind": "plan", "path": "docs/plan/PLAN-001-six-week-mvp.md"}
+{"ts": "2026-10-24T03:50:50", "event": "task.add", "id": "T-001", "title": "M1：项目骨架与模型工具调用跑通"}
+{"ts": "2026-10-24T03:50:51", "event": "task.add", "id": "T-002", "title": "M1：电商演示数据模型与初始化脚本"}
+{"ts": "2026-10-24T03:50:51", "event": "task.add", "id": "T-003", "title": "M1：对话接口与消息持久化"}
+{"ts": "2026-10-24T03:50:51", "event": "task.add", "id": "T-004", "title": "M2：表结构检索与 NL2SQL 生成"}
+{"ts": "2026-10-24T03:50:51", "event": "task.add", "id": "T-005", "title": "M2：SQL 只读安全校验与执行确认"}
+{"ts": "2026-10-24T03:50:51", "event": "task.add", "id": "T-006", "title": "M2：Redis 高频问答缓存与审计日志"}
+{"ts": "2026-10-24T03:50:51", "event": "task.add", "id": "T-007", "title": "M3：文档上传、切分与向量化管道"}
+{"ts": "2026-10-24T03:50:52", "event": "task.add", "id": "T-008", "title": "M3：RAG 检索、引用回答与拒答路由"}
+{"ts": "2026-10-24T03:50:52", "event": "task.add", "id": "T-009", "title": "M3：多轮上下文压缩与对话摘要"}
+{"ts": "2026-10-24T03:50:52", "event": "task.add", "id": "T-010", "title": "M4：50 条评估集与自动评估脚本"}
+{"ts": "2026-10-24T03:50:52", "event": "task.add", "id": "T-011", "title": "M4：Prompt、chunk、TopK 对比实验"}
+{"ts": "2026-10-24T03:50:52", "event": "task.add", "id": "T-012", "title": "M4：核心单元测试与异常场景测试"}
+{"ts": "2026-10-24T03:50:52", "event": "task.add", "id": "T-013", "title": "M5：Docker Compose 部署与环境隔离"}
+{"ts": "2026-10-24T03:50:52", "event": "task.add", "id": "T-014", "title": "M5：README、架构图与 API 文档"}
+{"ts": "2026-10-24T03:50:53", "event": "task.add", "id": "T-015", "title": "M5：演示录屏与面试深挖手册"}
+{"ts": "2026-10-24T03:51:48", "event": "sync", "added": 0}
+{"ts": "2026-10-24T03:51:48", "event": "gate.run", "phase": "plan", "scope": "exit", "ok": true, "errors": 0, "warnings": 0}
+{"ts": "2026-10-24T03:51:56", "event": "approve", "target": "PLAN-001", "by": "Codex", "role": "reviewer", "decision": "approved"}
+{"ts": "2026-10-24T03:51:57", "event": "phase.enter", "target": "develop", "forced": false}
+{"ts": "2026-10-24T03:52:05", "event": "gate.run", "phase": "develop", "scope": "exit", "ok": true, "errors": 0, "warnings": 2}
+{"ts": "2026-10-24T03:52:43", "event": "gate.run", "phase": "develop", "scope": "exit", "ok": true, "errors": 0, "warnings": 2}
+{"ts": "2026-10-24T03:52:52", "event": "gate.run", "phase": "develop", "scope": "exit", "ok": true, "errors": 0, "warnings": 3}

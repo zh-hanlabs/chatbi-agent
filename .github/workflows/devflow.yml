@@ -1,0 +1,99 @@
+# devflow 流水线（GitHub Actions）
+# 由 `devflow ci emit --platform github` 生成，可按需修改。
+# 核心不变式：本地 `python tools/devflow/devflow.py gate` 能过，CI 就能过 —— 两者是同一套规则。
+
+name: devflow-gate
+
+on:
+  push:
+    branches: ["main", "develop"]
+  pull_request:
+    branches: ["main", "develop"]
+  workflow_dispatch:
+
+concurrency:
+  group: devflow-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  gate:
+    name: 阶段门禁
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 准备 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: 同步交付物到状态文件
+        run: python3 "tools/devflow/devflow.py" sync
+
+      - name: 准出契约检查
+        id: check
+        run: |
+          set -o pipefail
+          python3 "tools/devflow/devflow.py" check --json > devflow-check.json || true
+          cat devflow-check.json
+
+      - name: 门禁（error 级不通过即失败本作业）
+        run: python3 "tools/devflow/devflow.py" gate
+
+      - name: 回写流水线结果
+        if: always()
+        run: |
+          RESULT="${{ job.status }}"
+          if [ "$RESULT" = "success" ]; then
+            python3 "tools/devflow/devflow.py" ci record --result success --run-id "${{ github.run_id }}" --set commit="${{ github.sha }}"
+          else
+            python3 "tools/devflow/devflow.py" ci record --result failed --run-id "${{ github.run_id }}"
+          fi
+
+      - name: 上传门禁报告
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: devflow-check
+          path: devflow-check.json
+          if-no-files-found: ignore
+
+  release-gate:
+    name: 发布门禁（strict）
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/')
+    needs: gate
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: 发布阶段严格门禁
+        run: python3 "tools/devflow/devflow.py" gate --phase release --mode strict
+
+      - name: 记录发布结果
+        if: always()
+        run: |
+          RESULT="${{ job.status }}"
+          if [ "$RESULT" = "success" ]; then
+            python3 "tools/devflow/devflow.py" ci record --result success --set stage=release
+          else
+            python3 "tools/devflow/devflow.py" ci record --result failed --set stage=release
+          fi
+
+# 分支保护建议（Settings → Branches → Add rule）：
+#   main / develop
+#   - Require a pull request before merging（至少 1 个 approve）
+#   - Require status checks to pass：勾选 "阶段门禁"
+#   - Require branches to be up to date before merging
+#   - Include administrators

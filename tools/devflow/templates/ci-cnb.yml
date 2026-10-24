@@ -1,0 +1,31 @@
+# devflow 流水线（CNB）
+# 由 `devflow ci emit --platform cnb` 生成。
+# 说明：CNB 使用 .cnb.yml 描述流水线；本地与 CI 共用同一套 devflow 规则。
+
+main:
+  push:
+    - stages:
+        - name: devflow-gate
+          image: python:3.11-slim
+          script:
+            - pip install --no-cache-dir --disable-pip-version-check -q nothing 2>/dev/null || true
+            - python3 {{ENTRY}} sync
+            - set -o pipefail; python3 {{ENTRY}} check --json > devflow-check.json || true
+            - cat devflow-check.json
+            - python3 {{ENTRY}} gate
+
+        - name: devflow-record
+          image: python:3.11-slim
+          script:
+            - python3 {{ENTRY}} ci record --result success --run-id "$CNB_PIPELINE_ID" --set commit="$CNB_COMMIT"
+
+  tag_push:
+    - stages:
+        - name: release-gate
+          image: python:3.11-slim
+          script:
+            - python3 {{ENTRY}} gate --phase release --mode strict
+            - python3 {{ENTRY}} ci record --result success --set stage=release
+
+# 分支保护建议：
+#   {{BRANCH}} / {{DEVELOP}} 设为保护分支，合并前必须满足上面的流水线成功。

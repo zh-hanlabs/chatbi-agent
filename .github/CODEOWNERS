@@ -1,0 +1,32 @@
+# CODEOWNERS
+#
+# 每一行：路径模式 + 一位或多位负责人（GitHub 用户名或团队）。
+# 命中最后一条规则；被指定为 owner 时，其 PR 需要 owner 的 approve 才能合并。
+# 请把下面的占位账号替换为真实成员后再提交。
+
+# 全局兜底 owner（建议为 Tech Lead 或维护者团队）
+*                       @TEAM_LEAD
+
+# 流程与规范
+/devflow.yaml           @TEAM_LEAD
+/.github/               @TEAM_LEAD
+/tools/devflow/         @TEAM_LEAD
+
+# 文档与交付物：按目录落到对应角色
+/docs/requirements/     @PM @TEAM_LEAD
+/docs/design/           @ARCHITECT
+/docs/adr/              @ARCHITECT
+/docs/plan/             @PM
+/docs/review/           @ARCHITECT
+/docs/test/             @QA
+/docs/release/          @OPS @TEAM_LEAD
+/docs/retro/            @PM @TEAM_LEAD
+
+# 状态与 CI
+/.devflow/              @TEAM_LEAD
+/.github/workflows/     @OPS
+/CI-CD/                 @OPS
+
+# 关键代码（示例：按你的实际目录调整）
+# /src/main/java/.../order/    @ORDER_OWNER
+# /src/main/java/.../payment/  @PAYMENT_OWNER
