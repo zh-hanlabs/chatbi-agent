@@ -33,6 +33,16 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: 准备 Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+          cache: maven
+
+      - name: 单元测试
+        run: ./mvnw -s .mvn/settings.xml test
+
       - name: 同步交付物到状态文件
         run: python3 "tools/devflow/devflow.py" sync
 
