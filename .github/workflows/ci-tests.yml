@@ -1,0 +1,42 @@
+# 全量测试与评估门禁:PR 与 feature 分支 push 都必须绿。
+# 内容与本地完全一致:./mvnw test(含 56 条评估集准确率门槛断言)。
+
+name: ci-tests
+
+on:
+  push:
+    branches: ["main", "feature/**", "fix/**"]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-tests-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    name: 全量测试(单元/API/异常/评估门槛)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 准备 Java 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+          cache: maven
+
+      - name: 全量测试
+        run: ./mvnw -B test
+
+      - name: 上传测试报告
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: surefire-reports
+          path: target/surefire-reports/
+          if-no-files-found: ignore
