@@ -14,6 +14,13 @@ spring:
       port: ${CHATBI_REDIS_PORT:6379}
 
 chatbi:
+  # OpenAI 兼容网关(GLM/DeepSeek/Qwen 等);api-key 为空时全部回退本地规则实现
+  llm:
+    base-url: ${CHATBI_LLM_BASE_URL:https://open.bigmodel.cn/api/paas/v4}
+    api-key: ${CHATBI_LLM_API_KEY:}
+    chat-model: ${CHATBI_LLM_CHAT_MODEL:glm-4-flash}
+    embedding-model: ${CHATBI_LLM_EMBEDDING_MODEL:embedding-3}
+    timeout-seconds: 10
   cache:
     # redis: 生产/联调;memory: 本地无 Redis 或测试时的进程内兜底
     type: ${CHATBI_CACHE_TYPE:redis}
