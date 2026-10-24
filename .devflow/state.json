@@ -7,8 +7,8 @@
     "repo": ""
   },
   "created_at": "2026-10-24T03:47:45",
-  "updated_at": "2026-10-24T08:48:51",
-  "current_phase": "develop",
+  "updated_at": "2026-10-24T09:09:48",
+  "current_phase": "release",
   "phases": {
     "intake": {
       "status": "completed",
@@ -35,9 +35,9 @@
       }
     },
     "develop": {
-      "status": "active",
+      "status": "completed",
       "entered_at": "2026-10-24T03:51:57",
-      "exited_at": null,
+      "exited_at": "2026-10-24T09:07:07",
       "attempts": 0,
       "last_check": {
         "at": "2026-10-24T08:48:51",
@@ -47,25 +47,35 @@
       }
     },
     "review": {
-      "status": "pending",
-      "entered_at": null,
-      "exited_at": null,
+      "status": "completed",
+      "entered_at": "2026-10-24T09:07:23",
+      "exited_at": "2026-10-24T09:07:23",
       "attempts": 0,
       "last_check": null
     },
     "test": {
-      "status": "pending",
-      "entered_at": null,
-      "exited_at": null,
+      "status": "completed",
+      "entered_at": "2026-10-24T09:07:23",
+      "exited_at": "2026-10-24T09:08:36",
       "attempts": 0,
-      "last_check": null
+      "last_check": {
+        "at": "2026-10-24T09:08:35",
+        "ok": true,
+        "errors": 0,
+        "warnings": 2
+      }
     },
     "release": {
-      "status": "pending",
-      "entered_at": null,
+      "status": "active",
+      "entered_at": "2026-10-24T09:08:36",
       "exited_at": null,
       "attempts": 0,
-      "last_check": null
+      "last_check": {
+        "at": "2026-10-24T09:09:48",
+        "ok": false,
+        "errors": 2,
+        "warnings": 1
+      }
     }
   },
   "artifacts": [
@@ -95,6 +105,24 @@
       "path": "docs/review/REVIEW-001-req-001.md",
       "created_at": "2026-10-24T08:48:07",
       "updated_at": "2026-10-24T08:48:51"
+    },
+    {
+      "id": "TEST-001",
+      "kind": "testplan",
+      "phase": "test",
+      "title": "REQ-001 功能与异常测试计划",
+      "path": "docs/test/TEST-001-req-001.md",
+      "created_at": "2026-10-24T08:50:07",
+      "updated_at": "2026-10-24T09:08:35"
+    },
+    {
+      "id": "RELEASE-001",
+      "kind": "releaseplan",
+      "phase": "release",
+      "title": "REQ-001 v0.1.0 首个演示版发布",
+      "path": "docs/release/RELEASE-001-req-001-v0-1-0.md",
+      "created_at": "2026-10-24T09:08:42",
+      "updated_at": "2026-10-24T09:09:48"
     }
   ],
   "tasks": [
@@ -423,6 +451,14 @@
       "phase": "review",
       "decision": "approved",
       "at": "2026-10-24T08:48:51"
+    },
+    {
+      "target": "TEST-001",
+      "by": "ZCode",
+      "role": "qa",
+      "phase": "test",
+      "decision": "approved",
+      "at": "2026-10-24T09:08:35"
     }
   ],
   "history": [
@@ -435,19 +471,39 @@
       "at": "2026-10-24T03:51:57",
       "from": "plan",
       "to": "develop"
+    },
+    {
+      "at": "2026-10-24T09:07:07",
+      "from": "develop",
+      "to": "review"
+    },
+    {
+      "at": "2026-10-24T09:07:23",
+      "from": "develop",
+      "to": "review"
+    },
+    {
+      "at": "2026-10-24T09:07:23",
+      "from": "review",
+      "to": "test"
+    },
+    {
+      "at": "2026-10-24T09:08:36",
+      "from": "test",
+      "to": "release"
     }
   ],
   "counters": {
     "task": 15
   },
   "last_gate": {
-    "phase": "develop",
+    "phase": "release",
     "scope": "exit",
-    "mode": "warn",
-    "ok": true,
-    "errors": 0,
-    "warnings": 2,
+    "mode": "graded",
+    "ok": false,
+    "errors": 2,
+    "warnings": 1,
     "infos": 0,
-    "rules": 7
+    "rules": 11
   }
 }

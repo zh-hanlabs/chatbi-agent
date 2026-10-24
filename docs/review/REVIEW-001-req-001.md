@@ -4,8 +4,8 @@ title: "REQ-001 全量交付评审"
 status: approved
 owner: "lenovo"
 reviewers: ["ZCode"]
-created_at: "2026-10-24"
-updated_at: "2026-10-24"
+created: "2026-10-24"
+updated: "2026-10-24"
 pr: "https://github.com/zh-hanlabs/chatbi-agent/pull/16"
 branch: "feature/REQ-001-project-skeleton"
 commits: ["9efa73a"]

@@ -34,6 +34,8 @@
 | REQ-001 | requirement | 智能问数 Agent 实习作品项目 | [docs/requirements/REQ-001-chatbi-agent.md](../docs/requirements/REQ-001-chatbi-agent.md) |
 | PLAN-001 | plan | 智能问数 Agent 六周交付计划 | [docs/plan/PLAN-001-six-week-mvp.md](../docs/plan/PLAN-001-six-week-mvp.md) |
 | REVIEW-001 | review | REQ-001 全量交付评审 | [docs/review/REVIEW-001-req-001.md](../docs/review/REVIEW-001-req-001.md) |
+| TEST-001 | testplan | REQ-001 功能与异常测试计划 | [docs/test/TEST-001-req-001.md](../docs/test/TEST-001-req-001.md) |
+| RELEASE-001 | releaseplan | REQ-001 v0.1.0 首个演示版发布 | [docs/release/RELEASE-001-req-001-v0-1-0.md](../docs/release/RELEASE-001-req-001-v0-1-0.md) |
 
 <!-- devflow:index:end -->
 

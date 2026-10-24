@@ -77,3 +77,16 @@
 {"ts": "2026-10-24T08:48:51", "event": "gate.run", "phase": "develop", "scope": "exit", "ok": true, "errors": 0, "warnings": 2}
 {"ts": "2026-10-24T08:48:51", "event": "doc.update", "id": "REVIEW-001", "fields": "comments_resolved"}
 {"ts": "2026-10-24T08:48:51", "event": "approve", "target": "REVIEW-001", "by": "ZCode", "role": "reviewer", "decision": "approved"}
+{"ts": "2026-10-24T08:50:07", "event": "phase.enter.blocked", "target": "test", "errors": 1}
+{"ts": "2026-10-24T08:50:07", "event": "doc.create", "id": "TEST-001", "kind": "testplan", "path": "docs/test/TEST-001-req-001.md"}
+{"ts": "2026-10-24T09:06:58", "event": "phase.enter.blocked", "target": "test", "errors": 1}
+{"ts": "2026-10-24T09:07:07", "event": "phase.enter", "target": "review", "forced": false}
+{"ts": "2026-10-24T09:07:07", "event": "phase.enter.blocked", "target": "test", "errors": 1}
+{"ts": "2026-10-24T09:07:23", "event": "phase.enter", "target": "review", "forced": false}
+{"ts": "2026-10-24T09:07:23", "event": "phase.enter", "target": "test", "forced": false}
+{"ts": "2026-10-24T09:08:35", "event": "gate.run", "phase": "test", "scope": "exit", "ok": true, "errors": 0, "warnings": 2}
+{"ts": "2026-10-24T09:08:35", "event": "approve", "target": "TEST-001", "by": "ZCode", "role": "qa", "decision": "approved"}
+{"ts": "2026-10-24T09:08:36", "event": "phase.enter", "target": "release", "forced": false}
+{"ts": "2026-10-24T09:08:42", "event": "doc.create", "id": "RELEASE-001", "kind": "releaseplan", "path": "docs/release/RELEASE-001-req-001-v0-1-0.md"}
+{"ts": "2026-10-24T09:09:48", "event": "doc.update", "id": "RELEASE-001", "fields": "status"}
+{"ts": "2026-10-24T09:09:48", "event": "gate.run", "phase": "release", "scope": "exit", "ok": false, "errors": 2, "warnings": 1}

@@ -3,17 +3,17 @@
 > 本文件由 devflow 自动生成，请勿手工编辑；修改请落到 `devflow.yaml` 与流程命令。
 
 - 项目：智能问数 Agent
-- 当前阶段：**develop**
-- 最近更新：2026-10-24T08:48:51
-- 已完成阶段：intake、plan
+- 当前阶段：**release**
+- 最近更新：2026-10-24T09:09:48
+- 已完成阶段：intake、plan、develop、review、test
 
 ## 当前阶段目标
 
-**4.0 · 开发执行**：按分支与提交规范完成编码、自测和 PR 提交，满足合入门禁
+**7.0 · 发布部署**：按发布计划灰度上线，流水线全绿、可观测到位、回滚方案可用
 
 下一步：
-- 创建符合规范的分支与 PR：`feature/<需求号>-<简述>`
-- 运行 `devflow new review --title "XXX 代码评审"` 进入评审阶段
+- 更新 CHANGELOG.md 并打 tag：`git tag vX.Y.Z`
+- 运行 `devflow phase enter --to retro` 进入复盘
 
 ## 阶段进度
 
@@ -21,14 +21,20 @@
 | --- | --- | --- | --- | --- | --- |
 | 1 | [x] intake | 已完成 需求立项 | 2026-10-24T03:47 | 2026-10-24T03:50 | 通过 (0E/1W) |
 | 3 | [x] plan | 已完成 排期计划 | 2026-10-24T03:50 | 2026-10-24T03:51 | 通过 (0E/0W) |
-| 4 | [~] develop | 进行中 开发执行 | 2026-10-24T03:51 | - | 通过 (0E/2W) |
-| 5 | [ ] review | 未开始 代码评审 | - | - | - |
-| 6 | [ ] test | 未开始 测试验证 | - | - | - |
-| 7 | [ ] release | 未开始 发布部署 | - | - | - |
+| 4 | [x] develop | 已完成 开发执行 | 2026-10-24T03:51 | 2026-10-24T09:07 | 通过 (0E/2W) |
+| 5 | [x] review | 已完成 代码评审 | 2026-10-24T09:07 | 2026-10-24T09:07 | - |
+| 6 | [x] test | 已完成 测试验证 | 2026-10-24T09:07 | 2026-10-24T09:08 | 通过 (0E/2W) |
+| 7 | [~] release | 进行中 发布部署 | 2026-10-24T09:08 | - | 未通过 (2E/1W) |
 
 ## 最近一次门禁结果
 
-尚未运行过门禁。执行：`devflow gate`
+**结论**：未通过（错误 2 / 警告 1 / 提示 0，运行规则 11 条，模式 `graded`）
+
+| 级别 | 规则 | 问题 | 位置 | 修复建议 |
+| --- | --- | --- | --- | --- |
+| 错误 | `doc.approval` | docs/release/RELEASE-001-req-001-v0-1-0.md 批准人数不足：0/1 | docs/release/RELEASE-001-req-001-v0-1-0.md | 需要至少 1 名评审人，`devflow approve --target RELEASE-001 --by <姓名>` |
+| 错误 | `release.version` | 版本 v0.1.0 对应的 tag v0.1.0 不存在 | docs/release/RELEASE-001-req-001-v0-1-0.md | `git tag v0.1.0 && git push --tags` |
+| 警告 | `ci.last_run` | 没有流水线结果记录（.devflow/ci-status.json） | - | CI 末尾执行 `devflow ci record --result success` 写入该文件 |
 
 ## 任务与排期
 
@@ -60,18 +66,20 @@
 | REQ-001 | requirement | 智能问数 Agent 实习作品项目 | `docs/requirements/REQ-001-chatbi-agent.md` | 2026-10-24T03:50 |
 | PLAN-001 | plan | 智能问数 Agent 六周交付计划 | `docs/plan/PLAN-001-six-week-mvp.md` | 2026-10-24T03:51 |
 | REVIEW-001 | review | REQ-001 全量交付评审 | `docs/review/REVIEW-001-req-001.md` | 2026-10-24T08:48 |
+| TEST-001 | testplan | REQ-001 功能与异常测试计划 | `docs/test/TEST-001-req-001.md` | 2026-10-24T09:08 |
+| RELEASE-001 | releaseplan | REQ-001 v0.1.0 首个演示版发布 | `docs/release/RELEASE-001-req-001-v0-1-0.md` | 2026-10-24T09:09 |
 
 ## 最近事件
 
 | 时间 | 事件 | 说明 |
 | --- | --- | --- |
-| 2026-10-24 08:48:51 | `approve` | target=REVIEW-001, by=ZCode, role=reviewer, decision=approved |
-| 2026-10-24 08:48:51 | `doc.update` | id=REVIEW-001, fields=comments_resolved |
-| 2026-10-24 08:48:51 | `gate.run` | phase=develop, scope=exit, ok=True, errors=0, warnings=2 |
-| 2026-10-24 08:48:07 | `doc.create` | id=REVIEW-001, kind=review, path=docs/review/REVIEW-001-req-001.md |
-| 2026-10-24 08:34:21 | `gate.run` | phase=develop, scope=exit, ok=True, errors=0, warnings=1 |
-| 2026-10-24 08:34:21 | `task.update` | id=T-015, fields=status |
-| 2026-10-24 08:32:19 | `task.update` | id=T-015, fields=status |
-| 2026-10-24 08:31:59 | `gate.run` | phase=develop, scope=exit, ok=True, errors=0, warnings=1 |
-| 2026-10-24 08:31:59 | `task.update` | id=T-014, fields=status |
-| 2026-10-24 08:30:00 | `task.update` | id=T-014, fields=status |
+| 2026-10-24 09:09:48 | `gate.run` | phase=release, scope=exit, ok=False, errors=2, warnings=1 |
+| 2026-10-24 09:09:48 | `doc.update` | id=RELEASE-001, fields=status |
+| 2026-10-24 09:08:42 | `doc.create` | id=RELEASE-001, kind=releaseplan, path=docs/release/RELEASE-001-req-001-v0-1-0.md |
+| 2026-10-24 09:08:36 | `phase.enter` | target=release, forced=False |
+| 2026-10-24 09:08:35 | `approve` | target=TEST-001, by=ZCode, role=qa, decision=approved |
+| 2026-10-24 09:08:35 | `gate.run` | phase=test, scope=exit, ok=True, errors=0, warnings=2 |
+| 2026-10-24 09:07:23 | `phase.enter` | target=test, forced=False |
+| 2026-10-24 09:07:23 | `phase.enter` | target=review, forced=False |
+| 2026-10-24 09:07:07 | `phase.enter.blocked` | target=test, errors=1 |
+| 2026-10-24 09:07:07 | `phase.enter` | target=review, forced=False |
