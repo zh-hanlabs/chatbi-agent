@@ -1,5 +1,6 @@
 package com.example.chatbi.rag;
 
+import com.example.chatbi.db.KeyHolderUtil;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -44,12 +45,7 @@ public class DocumentRepository {
             ps.setString(2, content);
             return ps;
         }, keyHolder);
-        return keyHolder.getKeys().entrySet().stream()
-                .filter(entry -> entry.getKey().equalsIgnoreCase("id"))
-                .map(entry -> (Number) entry.getValue())
-                .findFirst()
-                .orElseThrow(() -> new IllegalStateException("未取到 documents 自增主键"))
-                .longValue();
+        return KeyHolderUtil.extractId(keyHolder);
     }
 
     public void insertChunk(long documentId, int chunkIndex, String content, String embeddingJson) {

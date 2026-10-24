@@ -25,6 +25,9 @@ public class EvaluationService {
     public static final String CATEGORY_REFUSAL = "REFUSAL";
     public static final String CATEGORY_SQL_GUARD = "SQL_GUARD";
 
+    private static final String STANDARD_CORPUS_TITLE_1 = "【评估标准语料】业务口径说明";
+    private static final String STANDARD_CORPUS_TITLE_2 = "【评估标准语料】区域市场说明";
+
     public record CaseResult(long id, String category, String question, boolean passed, String actual) {
     }
 
@@ -119,16 +122,20 @@ public class EvaluationService {
                 "allowed=" + verdict.allowed() + ", reason=" + verdict.reason());
     }
 
-    /** RAG 用例依赖标准语料;知识库为空时灌入,保证评估可复现 */
+    /** RAG 用例依赖标准语料;用专属标题做幂等检查,知识库有无关文档也照常补齐 */
     private void ensureCorpus() {
-        if (!documentRepository.listDocuments().isEmpty()) {
-            return;
+        var titles = documentRepository.listDocuments().stream()
+                .map(DocumentRepository.DocumentRow::title)
+                .collect(java.util.stream.Collectors.toSet());
+        if (!titles.contains(STANDARD_CORPUS_TITLE_1)) {
+            ingestionService.ingest(STANDARD_CORPUS_TITLE_1,
+                    "GMV 的口径是已完成订单的金额总和。\n\n订单量的口径是全部状态的订单总数。\n\n"
+                            + "退款率的口径是退款订单数除以总订单数。");
         }
-        ingestionService.ingest("业务口径说明",
-                "GMV 的口径是已完成订单的金额总和。\n\n订单量的口径是全部状态的订单总数。\n\n"
-                        + "退款率的口径是退款订单数除以总订单数。");
-        ingestionService.ingest("区域市场说明",
-                "北京区域覆盖华北市场,客单价较高。\n\n上海区域覆盖华东市场,复购率最高。\n\n"
-                        + "广州区域覆盖华南市场,新客占比最高。");
+        if (!titles.contains(STANDARD_CORPUS_TITLE_2)) {
+            ingestionService.ingest(STANDARD_CORPUS_TITLE_2,
+                    "北京区域覆盖华北市场,客单价较高。\n\n上海区域覆盖华东市场,复购率最高。\n\n"
+                            + "广州区域覆盖华南市场,新客占比最高。");
+        }
     }
 }

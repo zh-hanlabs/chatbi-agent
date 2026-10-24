@@ -1,5 +1,6 @@
 package com.example.chatbi.chat;
 
+import com.example.chatbi.db.KeyHolderUtil;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -75,13 +76,7 @@ public class ConversationRepository {
             ps.setString(4, message.toolCallJson());
             return ps;
         }, keyHolder);
-        // H2 会连同 created_at 等默认值列一起返回，须按列名挑出主键
-        return keyHolder.getKeys().entrySet().stream()
-                .filter(entry -> entry.getKey().equalsIgnoreCase("id"))
-                .map(entry -> (Number) entry.getValue())
-                .findFirst()
-                .orElseThrow(() -> new IllegalStateException("未取到 messages 自增主键"))
-                .longValue();
+        return KeyHolderUtil.extractId(keyHolder);
     }
 
     public List<ChatMessage> findMessages(String conversationId) {

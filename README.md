@@ -14,10 +14,30 @@
 
 ## 技术路线
 
-- 后端：Java 17+、Spring Boot、Spring AI 或 LangChain4j
-- 存储：MySQL、Redis、PGVector / 嵌入式向量存储
-- 核心链路：Function Calling、NL2SQL、RAG、SQL 安全校验、审计与评估
-- 部署：Docker Compose
+- 后端：Java 21、Spring Boot 3.5(JdbcTemplate / Flyway / Validation)
+- 存储：MySQL 8(业务与系统表)、Redis 7(高频问答缓存,宕机自动降级)
+- 核心链路：意图路由 → NL2SQL / RAG 检索 → SQL 只读校验 → 执行确认 → 审计与评估
+- 部署:Docker Compose 一键全栈
+
+## 一键部署(Docker Compose)
+
+```bash
+cp .env.example .env          # 按需修改账号/端口
+docker compose up -d --build  # 构建 app 镜像并启动 MySQL + Redis + 应用
+# Flyway 启动时自动完成 V1~V4 迁移与种子数据
+curl http://localhost:8080/api/schema            # 验证服务
+bash scripts/run-eval.sh                          # 跑 56 条评估集
+docker compose down                               # 停止(数据保留在卷里)
+```
+
+仅起基础设施做本地开发(应用在本机跑):
+
+```bash
+docker compose -f docker-compose.dev.yml up -d
+./mvnw spring-boot:run
+```
+
+镜像为多阶段构建(Maven 构建 → JRE 运行,非 root 用户);MySQL/Redis 不对宿主机发布端口,应用走 compose 内部网络,环境差异通过 `.env` 隔离。
 
 ## 本地开发
 

@@ -1,0 +1,57 @@
+# 一键全栈:MySQL + Redis + 应用(Flyway 启动自动迁移)。
+# 用法: cp .env.example .env && docker compose up -d --build
+# 仅起基础设施做本地开发: docker compose -f docker-compose.dev.yml up -d
+
+services:
+  app:
+    build: .
+    container_name: chatbi-app
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/${CHATBI_DB_NAME:-chatbi_agent}?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: ${CHATBI_DB_USER:-chatbi}
+      SPRING_DATASOURCE_PASSWORD: ${CHATBI_DB_PASSWORD:-chatbi}
+      CHATBI_REDIS_HOST: redis
+      CHATBI_REDIS_PORT: "6379"
+      CHATBI_CACHE_TYPE: redis
+    ports:
+      - "${CHATBI_APP_PORT:-8080}:8080"
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8080/api/tools"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 40s
+
+  mysql:
+    image: mysql:8.4
+    container_name: chatbi-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${CHATBI_DB_ROOT_PASSWORD:-chatbi_root}
+      MYSQL_DATABASE: ${CHATBI_DB_NAME:-chatbi_agent}
+      MYSQL_USER: ${CHATBI_DB_USER:-chatbi}
+      MYSQL_PASSWORD: ${CHATBI_DB_PASSWORD:-chatbi}
+    # 不对宿主机发布端口,应用走 compose 内部网络;需要直连数据库时用 dev compose
+    volumes:
+      - chatbi-mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  redis:
+    image: redis:7-alpine
+    container_name: chatbi-redis
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+volumes:
+  chatbi-mysql-data:
