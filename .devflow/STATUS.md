@@ -4,7 +4,7 @@
 
 - 项目：智能问数 Agent
 - 当前阶段：**release**
-- 最近更新：2026-10-24T09:10:17
+- 最近更新：2026-10-24T09:14:45
 - 已完成阶段：intake、plan、develop、review、test
 
 ## 当前阶段目标
@@ -69,6 +69,7 @@
 
 | 时间 | 事件 | 说明 |
 | --- | --- | --- |
+| 2026-10-24 09:14:45 | `archive` | snapshot=.devflow/archive/req-001-v0.1.0.json |
 | 2026-10-24 09:10:17 | `gate.run` | phase=release, scope=exit, ok=True, errors=0, warnings=0 |
 | 2026-10-24 09:10:17 | `ci.record` | status=success, updated_at=2026-10-24T09:10:17, run_id=local-mvnw-103 |
 | 2026-10-24 09:10:06 | `approve` | target=RELEASE-001, by=lenovo, role=reviewer, decision=approved |
@@ -78,4 +79,3 @@
 | 2026-10-24 09:09:48 | `doc.update` | id=RELEASE-001, fields=status |
 | 2026-10-24 09:08:42 | `doc.create` | id=RELEASE-001, kind=releaseplan, path=docs/release/RELEASE-001-req-001-v0-1-0.md |
 | 2026-10-24 09:08:36 | `phase.enter` | target=release, forced=False |
-| 2026-10-24 09:08:35 | `approve` | target=TEST-001, by=ZCode, role=qa, decision=approved |

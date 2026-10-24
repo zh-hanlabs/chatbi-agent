@@ -1,0 +1,517 @@
+{
+  "version": "1.0",
+  "project": {
+    "name": "智能问数 Agent",
+    "slug": "",
+    "owner": "lenovo",
+    "repo": ""
+  },
+  "created_at": "2026-10-24T03:47:45",
+  "updated_at": "2026-10-24T09:10:17",
+  "current_phase": "release",
+  "phases": {
+    "intake": {
+      "status": "completed",
+      "entered_at": "2026-10-24T03:47:45",
+      "exited_at": "2026-10-24T03:50:29",
+      "attempts": 0,
+      "last_check": {
+        "at": "2026-10-24T03:50:10",
+        "ok": true,
+        "errors": 0,
+        "warnings": 1
+      }
+    },
+    "plan": {
+      "status": "completed",
+      "entered_at": "2026-10-24T03:50:29",
+      "exited_at": "2026-10-24T03:51:57",
+      "attempts": 0,
+      "last_check": {
+        "at": "2026-10-24T03:51:48",
+        "ok": true,
+        "errors": 0,
+        "warnings": 0
+      }
+    },
+    "develop": {
+      "status": "completed",
+      "entered_at": "2026-10-24T03:51:57",
+      "exited_at": "2026-10-24T09:07:07",
+      "attempts": 0,
+      "last_check": {
+        "at": "2026-10-24T08:48:51",
+        "ok": true,
+        "errors": 0,
+        "warnings": 2
+      }
+    },
+    "review": {
+      "status": "completed",
+      "entered_at": "2026-10-24T09:07:23",
+      "exited_at": "2026-10-24T09:07:23",
+      "attempts": 0,
+      "last_check": null
+    },
+    "test": {
+      "status": "completed",
+      "entered_at": "2026-10-24T09:07:23",
+      "exited_at": "2026-10-24T09:08:36",
+      "attempts": 0,
+      "last_check": {
+        "at": "2026-10-24T09:08:35",
+        "ok": true,
+        "errors": 0,
+        "warnings": 2
+      }
+    },
+    "release": {
+      "status": "active",
+      "entered_at": "2026-10-24T09:08:36",
+      "exited_at": null,
+      "attempts": 0,
+      "last_check": {
+        "at": "2026-10-24T09:10:17",
+        "ok": true,
+        "errors": 0,
+        "warnings": 0
+      }
+    }
+  },
+  "artifacts": [
+    {
+      "id": "REQ-001",
+      "kind": "requirement",
+      "phase": "intake",
+      "title": "智能问数 Agent 实习作品项目",
+      "path": "docs/requirements/REQ-001-chatbi-agent.md",
+      "created_at": "2026-10-24T03:48:05",
+      "updated_at": "2026-10-24T03:50:29"
+    },
+    {
+      "id": "PLAN-001",
+      "kind": "plan",
+      "phase": "plan",
+      "title": "智能问数 Agent 六周交付计划",
+      "path": "docs/plan/PLAN-001-six-week-mvp.md",
+      "created_at": "2026-10-24T03:50:37",
+      "updated_at": "2026-10-24T03:51:56"
+    },
+    {
+      "id": "REVIEW-001",
+      "kind": "review",
+      "phase": "review",
+      "title": "REQ-001 全量交付评审",
+      "path": "docs/review/REVIEW-001-req-001.md",
+      "created_at": "2026-10-24T08:48:07",
+      "updated_at": "2026-10-24T08:48:51"
+    },
+    {
+      "id": "TEST-001",
+      "kind": "testplan",
+      "phase": "test",
+      "title": "REQ-001 功能与异常测试计划",
+      "path": "docs/test/TEST-001-req-001.md",
+      "created_at": "2026-10-24T08:50:07",
+      "updated_at": "2026-10-24T09:08:35"
+    },
+    {
+      "id": "RELEASE-001",
+      "kind": "releaseplan",
+      "phase": "release",
+      "title": "REQ-001 v0.1.0 首个演示版发布",
+      "path": "docs/release/RELEASE-001-req-001-v0-1-0.md",
+      "created_at": "2026-10-24T09:08:42",
+      "updated_at": "2026-10-24T09:10:06"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "T-001",
+      "title": "M1：项目骨架与模型工具调用跑通",
+      "phase": "develop",
+      "owner": "lenovo",
+      "estimate_h": 10.0,
+      "priority": "P0",
+      "tags": [
+        "m1"
+      ],
+      "status": "done",
+      "start": "2026-10-24",
+      "due": "2026-11-02",
+      "depends_on": [],
+      "req": "REQ-001",
+      "note": "",
+      "blocking": true,
+      "created_at": "2026-10-24T03:50:50",
+      "updated_at": "2026-10-24T04:05:05"
+    },
+    {
+      "id": "T-002",
+      "title": "M1：电商演示数据模型与初始化脚本",
+      "phase": "develop",
+      "owner": "lenovo",
+      "estimate_h": 8.0,
+      "priority": "P0",
+      "tags": [
+        "m1"
+      ],
+      "status": "done",
+      "start": "2026-10-24",
+      "due": "2026-11-02",
+      "depends_on": [],
+      "req": "REQ-001",
+      "note": "",
+      "blocking": true,
+      "created_at": "2026-10-24T03:50:51",
+      "updated_at": "2026-10-24T05:22:45"
+    },
+    {
+      "id": "T-003",
+      "title": "M1：对话接口与消息持久化",
+      "phase": "develop",
+      "owner": "lenovo",
+      "estimate_h": 10.0,
+      "priority": "P0",
+      "tags": [
+        "m1"
+      ],
+      "status": "done",
+      "start": "2026-10-24",
+      "due": "2026-11-04",
+      "depends_on": [],
+      "req": "REQ-001",
+      "note": "",
+      "blocking": false,
+      "created_at": "2026-10-24T03:50:51",
+      "updated_at": "2026-10-24T05:29:50"
+    },
+    {
+      "id": "T-004",
+      "title": "M2：表结构检索与 NL2SQL 生成",
+      "phase": "develop",
+      "owner": "lenovo",
+      "estimate_h": 12.0,
+      "priority": "P0",
+      "tags": [
+        "m2"
+      ],
+      "status": "done",
+      "start": "2026-10-24",
+      "due": "2026-11-09",
+      "depends_on": [],
+      "req": "REQ-001",
+      "note": "",
+      "blocking": true,
+      "created_at": "2026-10-24T03:50:51",
+      "updated_at": "2026-10-24T05:40:03"
+    },
+    {
+      "id": "T-005",
+      "title": "M2：SQL 只读安全校验与执行确认",
+      "phase": "develop",
+      "owner": "lenovo",
+      "estimate_h": 12.0,
+      "priority": "P0",
+      "tags": [
+        "m2"
+      ],
+      "status": "done",
+      "start": "2026-10-24",
+      "due": "2026-11-11",
+      "depends_on": [],
+      "req": "REQ-001",
+      "note": "",
+      "blocking": true,
+      "created_at": "2026-10-24T03:50:51",
+      "updated_at": "2026-10-24T05:47:55"
+    },
+    {
+      "id": "T-006",
+      "title": "M2：Redis 高频问答缓存与审计日志",
+      "phase": "develop",
+      "owner": "lenovo",
+      "estimate_h": 8.0,
+      "priority": "P1",
+      "tags": [
+        "m2"
+      ],
+      "status": "done",
+      "start": "2026-10-24",
+      "due": "2026-11-13",
+      "depends_on": [],
+      "req": "REQ-001",
+      "note": "",
+      "blocking": false,
+      "created_at": "2026-10-24T03:50:51",
+      "updated_at": "2026-10-24T05:56:04"
+    },
+    {
+      "id": "T-007",
+      "title": "M3：文档上传、切分与向量化管道",
+      "phase": "develop",
+      "owner": "lenovo",
+      "estimate_h": 10.0,
+      "priority": "P0",
+      "tags": [
+        "m3"
+      ],
+      "status": "done",
+      "start": "2026-10-24",
+      "due": "2026-11-18",
+      "depends_on": [],
+      "req": "REQ-001",
+      "note": "",
+      "blocking": true,
+      "created_at": "2026-10-24T03:50:51",
+      "updated_at": "2026-10-24T06:52:55"
+    },
+    {
+      "id": "T-008",
+      "title": "M3：RAG 检索、引用回答与拒答路由",
+      "phase": "develop",
+      "owner": "lenovo",
+      "estimate_h": 12.0,
+      "priority": "P0",
+      "tags": [
+        "m3"
+      ],
+      "status": "done",
+      "start": "2026-10-24",
+      "due": "2026-11-20",
+      "depends_on": [],
+      "req": "REQ-001",
+      "note": "",
+      "blocking": true,
+      "created_at": "2026-10-24T03:50:52",
+      "updated_at": "2026-10-24T06:57:35"
+    },
+    {
+      "id": "T-009",
+      "title": "M3：多轮上下文压缩与对话摘要",
+      "phase": "develop",
+      "owner": "lenovo",
+      "estimate_h": 8.0,
+      "priority": "P1",
+      "tags": [
+        "m3"
+      ],
+      "status": "done",
+      "start": "2026-10-24",
+      "due": "2026-11-22",
+      "depends_on": [],
+      "req": "REQ-001",
+      "note": "",
+      "blocking": false,
+      "created_at": "2026-10-24T03:50:52",
+      "updated_at": "2026-10-24T07:00:49"
+    },
+    {
+      "id": "T-010",
+      "title": "M4：50 条评估集与自动评估脚本",
+      "phase": "develop",
+      "owner": "lenovo",
+      "estimate_h": 12.0,
+      "priority": "P0",
+      "tags": [
+        "m4"
+      ],
+      "status": "done",
+      "start": "2026-10-24",
+      "due": "2026-11-27",
+      "depends_on": [],
+      "req": "REQ-001",
+      "note": "",
+      "blocking": true,
+      "created_at": "2026-10-24T03:50:52",
+      "updated_at": "2026-10-24T07:09:03"
+    },
+    {
+      "id": "T-011",
+      "title": "M4：Prompt、chunk、TopK 对比实验",
+      "phase": "develop",
+      "owner": "lenovo",
+      "estimate_h": 8.0,
+      "priority": "P0",
+      "tags": [
+        "m4"
+      ],
+      "status": "done",
+      "start": "2026-10-24",
+      "due": "2026-11-29",
+      "depends_on": [],
+      "req": "REQ-001",
+      "note": "",
+      "blocking": true,
+      "created_at": "2026-10-24T03:50:52",
+      "updated_at": "2026-10-24T07:14:01"
+    },
+    {
+      "id": "T-012",
+      "title": "M4：核心单元测试与异常场景测试",
+      "phase": "develop",
+      "owner": "lenovo",
+      "estimate_h": 12.0,
+      "priority": "P0",
+      "tags": [
+        "m4"
+      ],
+      "status": "done",
+      "start": "2026-10-24",
+      "due": "2026-12-02",
+      "depends_on": [],
+      "req": "REQ-001",
+      "note": "",
+      "blocking": true,
+      "created_at": "2026-10-24T03:50:52",
+      "updated_at": "2026-10-24T08:07:21"
+    },
+    {
+      "id": "T-013",
+      "title": "M5：Docker Compose 部署与环境隔离",
+      "phase": "develop",
+      "owner": "lenovo",
+      "estimate_h": 8.0,
+      "priority": "P0",
+      "tags": [
+        "m5"
+      ],
+      "status": "done",
+      "start": "2026-10-24",
+      "due": "2026-12-04",
+      "depends_on": [],
+      "req": "REQ-001",
+      "note": "",
+      "blocking": true,
+      "created_at": "2026-10-24T03:50:52",
+      "updated_at": "2026-10-24T08:29:48"
+    },
+    {
+      "id": "T-014",
+      "title": "M5：README、架构图与 API 文档",
+      "phase": "develop",
+      "owner": "lenovo",
+      "estimate_h": 8.0,
+      "priority": "P0",
+      "tags": [
+        "m5"
+      ],
+      "status": "done",
+      "start": "2026-10-24",
+      "due": "2026-12-06",
+      "depends_on": [],
+      "req": "REQ-001",
+      "note": "",
+      "blocking": true,
+      "created_at": "2026-10-24T03:50:52",
+      "updated_at": "2026-10-24T08:31:59"
+    },
+    {
+      "id": "T-015",
+      "title": "M5：演示录屏与面试深挖手册",
+      "phase": "develop",
+      "owner": "lenovo",
+      "estimate_h": 6.0,
+      "priority": "P1",
+      "tags": [
+        "m5"
+      ],
+      "status": "done",
+      "start": "2026-10-24",
+      "due": "2026-12-07",
+      "depends_on": [],
+      "req": "REQ-001",
+      "note": "",
+      "blocking": false,
+      "created_at": "2026-10-24T03:50:53",
+      "updated_at": "2026-10-24T08:34:21"
+    }
+  ],
+  "approvals": [
+    {
+      "target": "REQ-001",
+      "by": "Codex",
+      "role": "reviewer",
+      "phase": "intake",
+      "decision": "approved",
+      "at": "2026-10-24T03:50:29"
+    },
+    {
+      "target": "PLAN-001",
+      "by": "Codex",
+      "role": "reviewer",
+      "phase": "plan",
+      "decision": "approved",
+      "at": "2026-10-24T03:51:56"
+    },
+    {
+      "target": "REVIEW-001",
+      "by": "ZCode",
+      "role": "reviewer",
+      "phase": "review",
+      "decision": "approved",
+      "at": "2026-10-24T08:48:51"
+    },
+    {
+      "target": "TEST-001",
+      "by": "ZCode",
+      "role": "qa",
+      "phase": "test",
+      "decision": "approved",
+      "at": "2026-10-24T09:08:35"
+    },
+    {
+      "target": "RELEASE-001",
+      "by": "lenovo",
+      "role": "reviewer",
+      "phase": "release",
+      "decision": "approved",
+      "at": "2026-10-24T09:10:06"
+    }
+  ],
+  "history": [
+    {
+      "at": "2026-10-24T03:50:29",
+      "from": "intake",
+      "to": "plan"
+    },
+    {
+      "at": "2026-10-24T03:51:57",
+      "from": "plan",
+      "to": "develop"
+    },
+    {
+      "at": "2026-10-24T09:07:07",
+      "from": "develop",
+      "to": "review"
+    },
+    {
+      "at": "2026-10-24T09:07:23",
+      "from": "develop",
+      "to": "review"
+    },
+    {
+      "at": "2026-10-24T09:07:23",
+      "from": "review",
+      "to": "test"
+    },
+    {
+      "at": "2026-10-24T09:08:36",
+      "from": "test",
+      "to": "release"
+    }
+  ],
+  "counters": {
+    "task": 15
+  },
+  "last_gate": {
+    "phase": "release",
+    "scope": "exit",
+    "mode": "graded",
+    "ok": true,
+    "errors": 0,
+    "warnings": 0,
+    "infos": 0,
+    "rules": 11
+  }
+}
